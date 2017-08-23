@@ -37,7 +37,7 @@ tools:context="com.example.crodriguez.androidfirebase.LoginActivity">
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="@string/nombre_usuario"
-            android:inputType="text" />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/txtPassword"

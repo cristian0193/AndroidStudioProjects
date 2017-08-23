@@ -7,4 +7,6 @@
     <string name="ingreso">Click en Ingresar</string>
     <string name="title_activity_maps">Map</string>
     <string name="nombre">Nombre</string>
+    <string name="usuarioExistente">ya tiene usuario</string>
+    <string name="registroUsuario">Usuario Registrado con Exito.</string>
 </resources>
