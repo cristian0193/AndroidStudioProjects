@@ -15,8 +15,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -40,6 +38,9 @@ public class RegistrarActivity extends AppCompatActivity{
     Button btnUsuarioExistente;
 
     private FirebaseAuth auth;
+    public String nombre = "";
+    public String usuario = "";
+    public String password = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,40 +55,63 @@ public class RegistrarActivity extends AppCompatActivity{
 
     @OnClick(R.id.btnRegistrar)
     public void clickRegistrar(){
-        //Toast.makeText(this,getString(R.string.ingreso),Toast.LENGTH_SHORT).show();
 
-        String nombre = txtNombre.getText().toString();
-        String usuario = txtUsuario.getText().toString();
-        String password = txtPassword.getText().toString();
+        nombre = txtNombre.getText().toString();
+        usuario = txtUsuario.getText().toString();
+        password = txtPassword.getText().toString();
 
         btnRegistrar.setEnabled(false);
 
-        auth.createUserWithEmailAndPassword(usuario,password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+        if(nombre.equals("") || usuario.equals("") || password.equals("")){
+            Toast.makeText(RegistrarActivity.this, "Ingrese Nombre, Usuario y Contraseña",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            auth.createUserWithEmailAndPassword(usuario,password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
 
-                            Toast.makeText(RegistrarActivity.this, R.string.registroUsuario,
-                                    Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegistrarActivity.this, R.string.registroUsuario,
+                                        Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(RegistrarActivity.this,LoginActivity.class);
-                            startActivity(intent);
+                                Intent intent = new Intent(RegistrarActivity.this,LoginActivity.class);
+                                startActivity(intent);
 
-                            finish();
+                                finish();
 
-                            return;
+                                return;
+                            }else{
+                                auth.signInWithEmailAndPassword(usuario,password)
+                                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                                if(task.isSuccessful()){
+
+                                                    btnUsuarioExistente.setEnabled(true);
+
+                                                    Toast.makeText(RegistrarActivity.this, R.string.usuarioExistente,
+                                                            Toast.LENGTH_SHORT).show();
+
+                                                    btnRegistrar.setEnabled(false);
+
+                                                    return;
+                                                }
+                                            }
+                                        });
+                            }
+
                         }
-
-                        Toast.makeText(RegistrarActivity.this,"Error : "+ task.getException().getMessage(),
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    });
+        }
 
     }
 
     @OnClick(R.id.btnUsuarioExistente)
     public void clickUsuarioExistente(){
+
+        btnUsuarioExistente.setEnabled(false);
 
         Intent intent = new Intent(RegistrarActivity.this,LoginActivity.class);
         startActivity(intent);

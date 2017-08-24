@@ -52,23 +52,33 @@ public class LoginActivity extends AppCompatActivity {
         String usuario = txtUsuario.getText().toString();
         String password = txtPassword.getText().toString();
 
-        auth.signInWithEmailAndPassword(usuario,password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+        if(usuario.equals("") || password.equals("")){
+            Toast.makeText(LoginActivity.this,"Ingrese Usuario y Password ",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            auth.signInWithEmailAndPassword(usuario,password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if(task.isSuccessful()){
-                            Intent intent = new Intent(LoginActivity.this,ControlActivity.class);
-                            startActivity(intent);
+                            if(task.isSuccessful()){
+                                Intent intent = new Intent(LoginActivity.this,ControlActivity.class);
+                                startActivity(intent);
 
-                            return;
+                                finish();
+
+                                return;
+                            }
+
+                            Toast.makeText(LoginActivity.this,"Error : El usuario no existe. ",
+                                    Toast.LENGTH_SHORT).show();
+
                         }
+                    });
+        }
 
-                        Toast.makeText(LoginActivity.this,"Error : El usuario no existe. ",
-                                Toast.LENGTH_SHORT).show();
 
-                    }
-                });
+
     }
 
 
