@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -9,6 +8,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.crodriguez.androidfirebase.RegistrarActivity">
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center"
+        android:text="@string/registrar"
+        android:textStyle="bold|normal"
+        android:textColor="@color/blanco"
+        android:background="@color/colorPrimaryDark"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,15 +29,16 @@
             android:layout_width="100dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_weight="0.2"
+            android:layout_weight="0.26"
             android:src="@mipmap/ic_launcher" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.7"
-            android:orientation="vertical">
+            android:layout_weight="0.77"
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <EditText
                 android:id="@+id/txtNombre"
@@ -38,18 +48,24 @@
                 android:hint="@string/nombre"
                 android:inputType="text" />
 
-            <textview
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                />
+                android:layout_height="wrap_content"
+                android:text="" />
 
             <EditText
                 android:id="@+id/txtUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nombre_usuario"
-                android:inputType="text"/>
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
 
             <EditText
                 android:id="@+id/txtPassword"
@@ -58,15 +74,23 @@
                 android:hint="@string/password"
                 android:inputType="textPassword" />
 
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <Button
+                android:id="@+id/btnUsuarioExistente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="@string/usuarioExistente"
+                android:background="@color/blanco"
+                android:textStyle="bold"/>
+
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnRegistrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="@string/registrar" />
 
 </FrameLayout>

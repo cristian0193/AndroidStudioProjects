@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">AndroidFirebase</string>
+    <string name="app_name">Android y Firebase</string>
     <string name="nombre_usuario">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="ingresar">Ingresar</string>
-    <string name="registrar">Registrar</string>
+    <string name="registrar">Registrar Nuevo Usuario</string>
     <string name="ingreso">Click en Ingresar</string>
     <string name="title_activity_maps">Map</string>
     <string name="nombre">Nombre</string>
+    <string name="usuarioExistente">ya tiene usuario</string>
+    <string name="registroUsuario">Usuario Registrado con Exito.</string>
 </resources>
