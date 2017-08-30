@@ -33,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     Button btnRegistrar;
 
     private FirebaseAuth auth;
+    private String usuario;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnIngresar)
     public void clickIngresar(){
-        String usuario = txtUsuario.getText().toString();
-        String password = txtPassword.getText().toString();
+        usuario = txtUsuario.getText().toString();
+        password = txtPassword.getText().toString();
 
         if(usuario.equals("") || password.equals("")){
             Toast.makeText(LoginActivity.this,"Ingrese Usuario y Password ",
@@ -59,7 +61,8 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                Intent intent = new Intent(LoginActivity.this,ControlActivity.class);
+                                Intent intent = new Intent(LoginActivity.this,BotonesActivity.class);
+                                intent.putExtra("StringCorreo",usuario);
                                 startActivity(intent);
                                 finish();
                                 return;

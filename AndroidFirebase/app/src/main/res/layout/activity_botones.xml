@@ -23,33 +23,33 @@
             android:columnCount="2"
             android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/button11"
-                android:layout_width="175dp"
-                android:layout_height="240dp"
-                android:text="Button1"
-                android:background="@color/verde"/>
+            <ToggleButton
+                android:id="@+id/btnSala"
+                android:layout_width="190dp"
+                android:layout_height="285dp"
+                android:text="SALA"
+                android:drawableLeft="@mipmap/ic_sala"/>
 
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="175dp"
-                android:layout_height="240dp"
-                android:text="Button2"
-                android:background="@color/rojo"/>
+            <ToggleButton
+                android:id="@+id/btnCocina"
+                android:layout_width="190dp"
+                android:layout_height="285dp"
+                android:text="COCINA"
+                android:drawableLeft="@mipmap/ic_cocina"/>
 
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="175dp"
-                android:layout_height="240dp"
-                android:text="Button3"
-                android:background="@color/azul" />
+            <ToggleButton
+                android:id="@+id/btnBano"
+                android:layout_width="190dp"
+                android:layout_height="285dp"
+                android:text="BAÑO"
+                android:drawableLeft="@mipmap/ic_bano"/>
 
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="175dp"
-                android:layout_height="240dp"
-                android:text="Button4"
-                android:background="@color/naranja"/>
+            <ToggleButton
+                android:id="@+id/btnHabitacion"
+                android:layout_width="190dp"
+                android:layout_height="285dp"
+                android:text="HABITACION"
+                android:drawableLeft="@mipmap/ic_habitacion"/>
 
 
         </GridLayout>
