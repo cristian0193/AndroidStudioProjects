@@ -28,6 +28,7 @@ public class BotonesActivity extends AppCompatActivity {
     ToggleButton btnHabitacion;
 
     DatabaseReference referencia;
+    Hogar hogar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class BotonesActivity extends AppCompatActivity {
 
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         referencia = mDatabase.getReference(FirebaseReferences.HOGAR_REFERENCIA);
+        hogar = new Hogar();
     }
 
     @OnClick(R.id.btnSala)
@@ -52,13 +54,11 @@ public class BotonesActivity extends AppCompatActivity {
 
         if(btnSala.isChecked()) {
 
-            Hogar hogar = new Hogar();
             hogar.setSala(1);
             referencia.child(nombre_correo).setValue(hogar);
 
         }else {
 
-            Hogar hogar = new Hogar();
             hogar.setSala(0);
             referencia.child(nombre_correo).setValue(hogar);
 
@@ -80,13 +80,11 @@ public class BotonesActivity extends AppCompatActivity {
 
         if(btnBano.isChecked()) {
 
-            Hogar hogar = new Hogar();
             hogar.setBano(1);
             referencia.child(nombre_correo).setValue(hogar);
 
         }else {
 
-            Hogar hogar = new Hogar();
             hogar.setBano(0);
             referencia.child(nombre_correo).setValue(hogar);
 
@@ -108,13 +106,11 @@ public class BotonesActivity extends AppCompatActivity {
 
         if(btnCocina.isChecked()) {
 
-            Hogar hogar = new Hogar();
             hogar.setCocina(1);
             referencia.child(nombre_correo).setValue(hogar);
 
         }else {
 
-            Hogar hogar = new Hogar();
             hogar.setCocina(0);
             referencia.child(nombre_correo).setValue(hogar);
 
@@ -136,13 +132,11 @@ public class BotonesActivity extends AppCompatActivity {
 
         if(btnHabitacion.isChecked()) {
 
-            Hogar hogar = new Hogar();
             hogar.setHabitacion(1);
             referencia.child(nombre_correo).setValue(hogar);
 
         }else {
 
-            Hogar hogar = new Hogar();
             hogar.setHabitacion(0);
             referencia.child(nombre_correo).setValue(hogar);
 
