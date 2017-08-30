@@ -7,19 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/cast_expanded_controller_progress_text_color"
-    tools:context="com.example.crodriguez.androidfirebase.ControlActivity">
+    android:background="@color/blanco"
+    tools:context="com.example.crodriguez.ejerciciointentcrodriguez.ActivityRecibir">
 
-    <Button
-        android:id="@+id/btnRegistrarCoche"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom|center"
-        android:text="@string/guarda_usuario"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/blanco"
-        android:textStyle="bold"
-        android:drawableLeft="@mipmap/ic_guardar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +22,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="0.26"
-            android:src="@mipmap/ic_coche" />
+            android:src="@mipmap/ic_user_verificado" />
 
 
         <LinearLayout
@@ -43,12 +33,12 @@
             android:weightSum="1">
 
             <EditText
-                android:id="@+id/txtMarca"
+                android:id="@+id/txtNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/Marca"
-                android:inputType="text" />
+                android:inputType="text"
+                android:enabled="false"/>
 
             <TextView
                 android:id="@+id/textView"
@@ -57,11 +47,11 @@
                 android:text="" />
 
             <EditText
-                android:id="@+id/txtDueno"
+                android:id="@+id/txtApellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/Dueno"
-                android:inputType="text" />
+                android:inputType="text"
+                android:enabled="false"/>
 
             <TextView
                 android:id="@+id/textView2"
@@ -70,11 +60,11 @@
                 android:text="" />
 
             <EditText
-                android:id="@+id/txtPuertas"
+                android:id="@+id/txtDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/Puertas"
-                android:inputType="text" />
+                android:inputType="text"
+                android:enabled="false"/>
 
             <TextView
                 android:id="@+id/textView3"
@@ -83,11 +73,11 @@
                 android:text="" />
 
             <EditText
-                android:id="@+id/txtRuedas"
+                android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/Ruedas"
-                android:inputType="text" />
+                android:inputType="textEmailAddress"
+                android:enabled="false"/>
 
             <TextView
                 android:id="@+id/textView4"
@@ -100,3 +90,4 @@
     </LinearLayout>
 
 </FrameLayout>
+
