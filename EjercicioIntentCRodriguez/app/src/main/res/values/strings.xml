@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android y Firebase</string>
+    <string name="app_name">C.Rodriguez Android</string>
     <string name="nombre_usuario">Email</string>
     <string name="password">Password</string>
     <string name="ingresar">Ingresar</string>
@@ -16,4 +16,8 @@
     <string name="Puertas">Puertas</string>
     <string name="Ruedas">Ruedas</string>
     <string name="RegistroCoche">Registro Guardado</string>
+    <string name="direccion">Direccion</string>
+    <string name="apellido">Apellido</string>
+    <string name="enviar_registros">Enviar Registros</string>
+    <string name="email">Email</string>
 </resources>

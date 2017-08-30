@@ -7,15 +7,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/cast_expanded_controller_progress_text_color"
-    tools:context="com.example.crodriguez.androidfirebase.ControlActivity">
+    android:background="@color/blanco"
+    tools:context="com.example.crodriguez.ejerciciointentcrodriguez.ActivityEnvia">
 
     <Button
-        android:id="@+id/btnRegistrarCoche"
+        android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom|center"
-        android:text="@string/guarda_usuario"
+        android:text="@string/enviar_registros"
         android:background="@color/colorPrimaryDark"
         android:textColor="@color/blanco"
         android:textStyle="bold"
@@ -32,7 +32,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="0.26"
-            android:src="@mipmap/ic_coche" />
+            android:src="@mipmap/ic_registro2" />
 
 
         <LinearLayout
@@ -43,11 +43,11 @@
             android:weightSum="1">
 
             <EditText
-                android:id="@+id/txtMarca"
+                android:id="@+id/txtNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/Marca"
+                android:hint="@string/nombre"
                 android:inputType="text" />
 
             <TextView
@@ -57,10 +57,10 @@
                 android:text="" />
 
             <EditText
-                android:id="@+id/txtDueno"
+                android:id="@+id/txtApellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/Dueno"
+                android:hint="@string/apellido"
                 android:inputType="text" />
 
             <TextView
@@ -70,10 +70,10 @@
                 android:text="" />
 
             <EditText
-                android:id="@+id/txtPuertas"
+                android:id="@+id/txtDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/Puertas"
+                android:hint="@string/direccion"
                 android:inputType="text" />
 
             <TextView
@@ -83,11 +83,11 @@
                 android:text="" />
 
             <EditText
-                android:id="@+id/txtRuedas"
+                android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/Ruedas"
-                android:inputType="text" />
+                android:hint="@string/email"
+                android:inputType="textEmailAddress" />
 
             <TextView
                 android:id="@+id/textView4"

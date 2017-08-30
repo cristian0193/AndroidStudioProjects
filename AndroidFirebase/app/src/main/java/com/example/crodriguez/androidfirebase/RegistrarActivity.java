@@ -12,10 +12,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import models.FirebaseReferences;
+import models.Usuario;
 
 public class RegistrarActivity extends AppCompatActivity{
 
@@ -35,6 +40,8 @@ public class RegistrarActivity extends AppCompatActivity{
     Button btnUsuarioExistente;
 
     private FirebaseAuth auth;
+    DatabaseReference referencia;
+
     public String nombre = "";
     public String usuario = "";
     public String password = "";
@@ -48,6 +55,8 @@ public class RegistrarActivity extends AppCompatActivity{
         // [START initialize_database_ref]
         auth = FirebaseAuth.getInstance();
         // [END initialize_database_ref]
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        referencia = mDatabase.getReference(FirebaseReferences.TUTORIAL_REFERENCIA);
     }
 
     @OnClick(R.id.btnRegistrar)
@@ -69,15 +78,30 @@ public class RegistrarActivity extends AppCompatActivity{
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
 
-                                Toast.makeText(RegistrarActivity.this, R.string.registroUsuario,
-                                        Toast.LENGTH_SHORT).show();
+                               final String uid = task.getResult().getUser().getUid();
 
-                                Intent intent = new Intent(RegistrarActivity.this,LoginActivity.class);
-                                startActivity(intent);
+                                task.getResult().getUser().getToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<GetTokenResult> task) {
 
-                                finish();
+                                        Usuario ObjUsuario = new Usuario();
 
-                                return;
+                                        ObjUsuario.setNombre(nombre);
+                                        ObjUsuario.setToken(task.getResult().getToken());
+
+                                        referencia.child(FirebaseReferences.USER_REFERENCIA).push().setValue(ObjUsuario);
+
+                                        Toast.makeText(RegistrarActivity.this, R.string.registroUsuario,
+                                                Toast.LENGTH_SHORT).show();
+
+                                        Intent intent = new Intent(RegistrarActivity.this,LoginActivity.class);
+                                        startActivity(intent);
+
+                                        finish();
+
+                                    }
+                                });
+
                             }else{
                                 auth.signInWithEmailAndPassword(usuario,password)
                                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -87,22 +111,17 @@ public class RegistrarActivity extends AppCompatActivity{
                                                 if(task.isSuccessful()){
 
                                                     btnUsuarioExistente.setEnabled(true);
-
                                                     Toast.makeText(RegistrarActivity.this, R.string.usuarioExistente,
                                                             Toast.LENGTH_SHORT).show();
-
                                                     btnRegistrar.setEnabled(false);
-
                                                     return;
                                                 }
                                             }
                                         });
                             }
-
                         }
                     });
         }
-
     }
 
     @OnClick(R.id.btnUsuarioExistente)
