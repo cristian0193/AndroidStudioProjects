@@ -27,20 +27,15 @@
                 android:id="@+id/btnSala"
                 android:layout_width="190dp"
                 android:layout_height="285dp"
+                android:paddingBottom="@dimen/cast_mini_controller_control_button_margin"
                 android:text="SALA"
                 android:drawableLeft="@mipmap/ic_sala"/>
-
-            <ToggleButton
-                android:id="@+id/btnCocina"
-                android:layout_width="190dp"
-                android:layout_height="285dp"
-                android:text="COCINA"
-                android:drawableLeft="@mipmap/ic_cocina"/>
 
             <ToggleButton
                 android:id="@+id/btnBano"
                 android:layout_width="190dp"
                 android:layout_height="285dp"
+                android:paddingBottom="@dimen/cast_mini_controller_control_button_margin"
                 android:text="BAÑO"
                 android:drawableLeft="@mipmap/ic_bano"/>
 
@@ -48,8 +43,18 @@
                 android:id="@+id/btnHabitacion"
                 android:layout_width="190dp"
                 android:layout_height="285dp"
+                android:paddingBottom="@dimen/cast_mini_controller_control_button_margin"
                 android:text="HABITACION"
                 android:drawableLeft="@mipmap/ic_habitacion"/>
+
+            <ToggleButton
+                android:id="@+id/btnCocina"
+                android:layout_width="190dp"
+                android:layout_height="285dp"
+                android:paddingBottom="@dimen/cast_mini_controller_control_button_margin"
+                android:drawableLeft="@mipmap/ic_cocina"
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:text="COCINA" />
 
 
         </GridLayout>
