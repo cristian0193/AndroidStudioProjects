@@ -161,7 +161,6 @@ public class BotonesActivity extends AppCompatActivity {
         String[] parts = correo.split("@");
         String nombre_correo = parts[0];
 
-
         referencia.child(nombre_correo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
