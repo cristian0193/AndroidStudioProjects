@@ -1,12 +1,15 @@
 package com.example.crodriguez.listatareas.modelos;
 
-/**
- * Created by CRODRIGUEZ on 5/09/2017.
- */
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
 
+@Entity
 public class Tarea {
 
+    @ColumnInfo(name="nombre")
     private String nombre;
+
+    @ColumnInfo(name="realizada")
     private boolean realizada;
 
     public Tarea() {
