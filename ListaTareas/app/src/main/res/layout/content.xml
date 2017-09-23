@@ -29,7 +29,7 @@
         <android.support.design.widget.FloatingActionButton
 
             android:id="@+id/btnEnviarTarea"
-            android:layout_width="wrap_content"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:backgroundTint="@color/colorPrimary"
