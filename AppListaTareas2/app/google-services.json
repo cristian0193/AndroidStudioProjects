@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "139081692060",
+    "firebase_url": "https://applistatareas-30ff2.firebaseio.com",
+    "project_id": "applistatareas-30ff2",
+    "storage_bucket": "applistatareas-30ff2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139081692060:android:5f3aeee13fc722ed",
+        "android_client_info": {
+          "package_name": "com.example.crodriguez.applistatareas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139081692060-i7ojjojnjlqohnpu3jk1re8dls7u6gb4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkgAeVvL_j92JKN8VUokcqRyUlDivuGho"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

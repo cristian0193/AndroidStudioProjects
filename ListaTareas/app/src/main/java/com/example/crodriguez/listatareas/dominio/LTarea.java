@@ -4,14 +4,16 @@ import com.example.crodriguez.listatareas.modelos.Tarea;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LTarea {
+public class LTarea implements ILtarea {
 
-    private static List<Tarea> lstTarea = new ArrayList<>();
+    public static List<Tarea> lstTarea = new ArrayList<>();
 
-    public void adTarea (Tarea tarea){
+    @Override
+    public void addTarea (Tarea tarea){
         lstTarea.add(tarea);
     }
 
+    @Override
     public List<Tarea> getLstTarea(){
         return lstTarea;
     }

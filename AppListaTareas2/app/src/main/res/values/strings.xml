@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AppListaTareas</string>
+    <string name="nombre_usuario">Email</string>
+    <string name="password">Password</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="registrar">Registrar Nuevo Usuario</string>
+    <string name="ingreso">Click en Ingresar</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="nombre">Nombre</string>
+    <string name="usuarioExistente">ya tiene usuario</string>
+    <string name="registroUsuario">Usuario Registrado con Exito.</string>
+    <string name="ErrorRegistroCoche">Ingrese todos los datos.</string>
+    <string name="guarda_usuario">Guardar Registro</string>
+    <string name="Marca">Marca</string>
+    <string name="Dueno">Dueño</string>
+    <string name="Puertas">Puertas</string>
+    <string name="Ruedas">Ruedas</string>
+    <string name="RegistroCoche">Registro Guardado</string>
+    <string name="title_activity_lista_tareas">ListaTareasActivity</string>
+    <string name="facebook_app_id">167909540429700</string>
+    <string name="fb_login_protocol_scheme">fb167909540429700</string>
+    <string name="cancel_login">Login Cancelado</string>
+    <string name="error_login">Ocurrio un error :</string>
+</resources>
