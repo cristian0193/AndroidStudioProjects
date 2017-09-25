@@ -21,4 +21,15 @@
     <string name="fb_login_protocol_scheme">fb167909540429700</string>
     <string name="cancel_login">Login Cancelado</string>
     <string name="error_login">Ocurrio un error :</string>
+    <string name="escribir_tarea">Que tienes que hacer ?</string>
+    <string name="title_activity_prueba">pruebaActivity</string>
+    <string name="signin">Informacion</string>
+    <string name="cancel">Cancelar</string>
+    <string name="RegistrodeTarea">Registro de Tarea</string>
+    <string name="login">Login</string>
+    <string name="fecha">Fecha</string>
+    <string name="registrar_tarea">Registrar Tarea</string>
+    <string name="Calendario">Calendario</string>
+    <string name="CamposVaciosTarea">Ingrese todos los campos</string>
+    <string name="TareaRegistrada">Tareas Registrada con Exito</string>
 </resources>

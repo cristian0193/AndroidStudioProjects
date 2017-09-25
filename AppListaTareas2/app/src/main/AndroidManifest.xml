@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Vista.RegistroActivity" />
-        <activity android:name=".Vista.ListaTareasActivity"></activity>
+        <activity android:name=".Vista.ListaTareasActivity" />
     </application>
 
 </manifest>
