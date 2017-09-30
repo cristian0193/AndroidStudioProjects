@@ -32,4 +32,9 @@
     <string name="Calendario">Calendario</string>
     <string name="CamposVaciosTarea">Ingrese todos los campos</string>
     <string name="TareaRegistrada">Tareas Registrada con Exito</string>
+    <string name="tarea">Tarea</string>
+    <string name="ok">Aceptar</string>
+    <string name="dialog_title">Ingresar Tarea</string>
+    <string name="dialog_message">Datos Obligatorios</string>
+    <string name="Agregar">Agregar</string>
 </resources>
