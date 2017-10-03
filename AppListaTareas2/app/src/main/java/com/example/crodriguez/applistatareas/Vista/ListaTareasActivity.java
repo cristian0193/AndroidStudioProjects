@@ -1,12 +1,14 @@
 package com.example.crodriguez.applistatareas.Vista;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -35,18 +37,6 @@ public class ListaTareasActivity extends AppCompatActivity implements IListView,
     @BindView(R.id.rvListTODO)
     RecyclerView rvListTODO;
 
-   /* @BindView(R.id.etTarea)
-    EditText etTarea;
-
-    @BindView(R.id.etFecha)
-    EditText etFecha;*/
-
-   /* @BindView(R.id.btnCalendario)
-    Button btnCalendario;*/
-
-   /* @BindView(R.id.btnRegistrarTarea)
-    Button btnRegistrarTarea;*/
-
     Calendar mCurrentDate;
     int day, month, year;
 
@@ -66,7 +56,7 @@ public class ListaTareasActivity extends AppCompatActivity implements IListView,
         List<Tarea> lsTarea = listPresenter.obtenerTareas();
         rvListTODO.setAdapter(new TodoListAdapter(lsTarea, this));
 
-          }
+    }
 
     @OnClick(R.id.btnMostrarModal)
     @Override
@@ -74,11 +64,14 @@ public class ListaTareasActivity extends AppCompatActivity implements IListView,
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(ListaTareasActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.dialog_sigin, null);
+        mBuilder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
         mBuilder.setView(mView);
-        AlertDialog dialog = mBuilder.create();
-        dialog.show();
 
-        /*btnCalendario.setOnClickListener(new View.OnClickListener() {
+        final EditText etTarea = (EditText) mView.findViewById(R.id.etTarea);
+        final EditText etFecha = (EditText) mView.findViewById(R.id.etFecha);
+        Button btnCalendar = (Button) mView.findViewById(R.id.btnCalendario);
+
+        btnCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mCurrentDate = Calendar.getInstance();
@@ -101,39 +94,27 @@ public class ListaTareasActivity extends AppCompatActivity implements IListView,
             }
         });
 
-        btnRegistrarTarea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!etTarea.getText().equals("") && !etFecha.getText().equals("")){
+        mBuilder.setPositiveButton(R.string.Agregar, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
 
-                    String tareaIngresada = etTarea.getText().toString();
-                    String fechaIngresada = etFecha.getText().toString();
+                String tareaIngresada = "";
+                String fechaIngresada = "";
 
-                    listPresenter.addTarea(tareaIngresada,fechaIngresada);
+                tareaIngresada = etTarea.getText().toString();
+                fechaIngresada = etFecha.getText().toString();
 
-                    Toast.makeText(getApplicationContext(),R.string.TareaRegistrada,Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(),R.string.CamposVaciosTarea,Toast.LENGTH_SHORT).show();
+                if (!tareaIngresada.equals("") && !fechaIngresada.equals("")) {
+                    listPresenter.addTarea(tareaIngresada, fechaIngresada);
+                    Toast.makeText(getApplicationContext(), R.string.TareaRegistrada, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.CamposVaciosTarea, Toast.LENGTH_SHORT).show();
                 }
             }
-        });*/
+        });
 
+        mBuilder.create();
+        mBuilder.show();
     }
-
-   /* @OnClick(R.id.btnRegistrarTarea)
-    public void registrarTarea(){
-        if(!etTarea.getText().equals("") && !etFecha.getText().equals("")){
-
-            String tareaIngresada = etTarea.getText().toString();
-            String fechaIngresada = etFecha.getText().toString();
-
-            listPresenter.addTarea(tareaIngresada,fechaIngresada);
-
-            Toast.makeText(getApplicationContext(),R.string.TareaRegistrada,Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(getApplicationContext(),R.string.CamposVaciosTarea,Toast.LENGTH_SHORT).show();
-        }
-    }*/
 
     @Override
     public void refrescarListaTareas() {

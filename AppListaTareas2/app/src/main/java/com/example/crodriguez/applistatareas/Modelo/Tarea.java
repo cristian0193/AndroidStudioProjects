@@ -1,18 +1,11 @@
 package com.example.crodriguez.applistatareas.Modelo;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-
-@Entity
 public class Tarea {
 
-    @ColumnInfo(name="nombre")
     private String nombre;
 
-    @ColumnInfo(name="fecha")
     private String fecha;
 
-    @ColumnInfo(name="realizada")
     private boolean realizada;
 
     public Tarea() {
@@ -41,9 +34,5 @@ public class Tarea {
     public void setRealizada(boolean realizada) {
         this.realizada = realizada;
     }
-
-
-
-
 
 }

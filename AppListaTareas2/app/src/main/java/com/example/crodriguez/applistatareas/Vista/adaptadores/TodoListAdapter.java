@@ -22,7 +22,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ItemTo
     private List<Tarea> dataset;
     private OnListenerItemCheck onListenerItemCheck;
 
-   public TodoListAdapter(List<Tarea> dataset, OnListenerItemCheck onListenerItemCheck){
+    public TodoListAdapter(List<Tarea> dataset, OnListenerItemCheck onListenerItemCheck){
        super();
        this.dataset = dataset;
        this.onListenerItemCheck = onListenerItemCheck;
@@ -39,14 +39,15 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ItemTo
         Tarea tarea = dataset.get(position);
 
         if(tarea.isRealizada()){
-            holder.etTarea.setPaintFlags(holder.etTarea.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.tvTarea.setPaintFlags(holder.tvTarea.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.tvFecha.setPaintFlags(holder.tvFecha.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }else{
-            holder.etTarea.setPaintFlags(holder.etTarea.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
-
+            holder.tvTarea.setPaintFlags(holder.tvTarea.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.tvFecha.setPaintFlags(holder.tvFecha.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
         }
 
-        holder.etTarea.setText(tarea.getNombre());
-        holder.etFecha.setText(tarea.getFecha());
+        holder.tvTarea.setText(tarea.getNombre());
+        holder.tvFecha.setText(tarea.getFecha());
         holder.chkTarea.setChecked(tarea.isRealizada());
     }
 
@@ -55,17 +56,16 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ItemTo
         return dataset.size();
     }
 
-
     public class ItemTodoList extends RecyclerView.ViewHolder{
 
         @BindView(R.id.chkTarea)
         AppCompatCheckBox chkTarea;
 
-        @BindView(R.id.etFecha)
-        EditText etFecha;
+        @BindView(R.id.tvTarea)
+        EditText tvTarea;
 
-        @BindView(R.id.etTarea)
-        EditText etTarea;
+        @BindView(R.id.tvFecha)
+        EditText tvFecha;
 
         public ItemTodoList(View itemView) {
             super(itemView);
@@ -81,6 +81,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ItemTo
                     }
                 });
             }
+
+
 
         }
     }
