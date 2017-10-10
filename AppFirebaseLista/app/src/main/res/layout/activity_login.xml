@@ -18,7 +18,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.23"
+            android:layout_weight="0.93"
             android:text="" />
 
         <EditText
@@ -57,6 +57,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/selector_xml_btn_yellow"
             android:text="@string/ingresar" />
+
 
         <TextView
             android:id="@+id/lbRegistrar"

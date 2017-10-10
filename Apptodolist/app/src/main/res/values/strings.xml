@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Apptodolist</string>
+    <string name="escribir_tarea">Ingresa tu tarea</string>
+    <string name="fecha_finalizacion">¿Cuando finaliza tu tarea?</string>
+    <string name="fecha">Fecha</string>
+    <string name="popup_title">Agregar Tarea</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="nombre_usuario">Usuario</string>
+    <string name="password">Password</string>
+    <string name="ingresar">Login</string>
+    <string name="registrar">Registrarse</string>
+</resources>

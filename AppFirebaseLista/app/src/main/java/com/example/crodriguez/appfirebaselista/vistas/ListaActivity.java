@@ -44,9 +44,13 @@ public class ListaActivity extends AppCompatActivity implements IListView,TodoLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
-
         ButterKnife.bind(this);
+
+        String user = getIntent().getExtras().getString("StringUser");
+        getSupportActionBar().setTitle("user : " + user);
+
         listPresenter = new ListPresenter(this);
+        listPresenter.obtenerTareasFirebase();
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -56,6 +60,7 @@ public class ListaActivity extends AppCompatActivity implements IListView,TodoLi
         List<Tarea> lsTarea = listPresenter.obtenerTareas();
 
         rvListTODO.setAdapter(new TodoListAdapter(lsTarea,this));
+
     }
 
     @OnClick(R.id.btnEnviarTareaModal)

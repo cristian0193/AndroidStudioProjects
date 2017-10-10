@@ -10,6 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.crodriguez.appfirebaselista.R;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -48,8 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        getSupportActionBar().hide();
+
         auth = FirebaseAuth.getInstance();
 
+        //FacebookSdk.sdkInitialize(getApplicationContext());
     }
 
     @OnClick(R.id.btnIngresar)
@@ -67,9 +77,9 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Intent intent = new Intent(LoginActivity.this,ListaActivity.class);
-                                //intent.putExtra("StringCorreo",usuario);
+                                intent.putExtra("StringUser",usuario);
                                 startActivity(intent);
-                                //finish();
+                                finish();
                                 return;
                             }
                             Toast.makeText(LoginActivity.this,"Error : El usuario no existe. ",
@@ -84,8 +94,8 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this,RegistroActivity.class);
         startActivity(intent);
     }
-
-   /* @OnClick(R.id.login_button)
+/*
+    @OnClick(R.id.login_button)
     public void loginFacebook(){
         callbackManager = CallbackManager.Factory.create();
         login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -104,16 +114,16 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),R.string.error_login, Toast.LENGTH_LONG).show();
             }
         });
-    }*/
+    }
 
-    /*private void pantallaPrincipal() {
+    private void pantallaPrincipal() {
         Intent intent = new Intent(this, ListaActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
-    }*/
+    }
 
-    /*@Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         callbackManager.onActivityResult(requestCode,resultCode,data);

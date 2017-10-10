@@ -39,4 +39,5 @@
     <string name="dialog_title">Ingresar Tarea</string>
     <string name="dialog_message">Datos Obligatorios</string>
     <string name="Agregar">Agregar</string>
+    <string name="ingresoFacebook">Ingreso con Facebook</string>
 </resources>

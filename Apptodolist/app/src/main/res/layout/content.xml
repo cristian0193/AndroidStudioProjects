@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvListTODO"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_gravity="top|center"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnEnviarTarea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom|right"
+                android:layout_marginRight="@dimen/activity_horizontal_marginRight"
+                android:layout_marginTop="@dimen/activity_vertical_marginTop"
+                android:layout_marginLeft="@dimen/activity_horizontal_marginLeft"
+                android:layout_marginBottom="@dimen/activity_vertical_marginTop"
+                android:backgroundTint="@color/colorAccent"
+                android:src="@android:drawable/ic_menu_add"  />
+
+
+</FrameLayout>
