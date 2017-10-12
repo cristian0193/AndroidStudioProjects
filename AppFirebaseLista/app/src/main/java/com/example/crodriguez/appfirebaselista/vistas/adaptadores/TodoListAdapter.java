@@ -70,7 +70,6 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ItemTo
             super(itemView);
             ButterKnife.bind(this,itemView);
 
-
             if (onListenerItemCheck != null){
                 chkTarea.setOnClickListener(new View.OnClickListener() {
                     @Override

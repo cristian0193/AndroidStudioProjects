@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="activity_horizontal_marginRight">10dp</dimen>
+    <dimen name="activity_horizontal_marginLeft">10dp</dimen>
+    <dimen name="activity_vertical_marginTop">5dp</dimen>
+    <dimen name="activity_vertical_marginBottom">5dp</dimen>
+    <dimen name="title_popup">25sp</dimen>
+</resources>

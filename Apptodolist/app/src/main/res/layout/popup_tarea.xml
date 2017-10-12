@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/tvTareaPopup"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_marginTop"
+        android:layout_marginLeft="@dimen/activity_horizontal_marginLeft"
+        android:layout_marginRight="@dimen/activity_horizontal_marginRight"
+        android:layout_marginBottom="@dimen/activity_vertical_marginTop"
+        android:hint="@string/escribir_tarea" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_marginLeft"
+        android:layout_marginRight="@dimen/activity_horizontal_marginRight"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/tvFechaPopup"
+            android:inputType="date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:layout_marginTop="@dimen/activity_vertical_marginTop"
+            android:fontFamily="sans-serif"
+            android:hint="@string/fecha_finalizacion"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="@string/fecha"
+            android:id="@+id/btnCalendario"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
