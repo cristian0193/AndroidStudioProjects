@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ListaAndroidUCC</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="nombre_usuario">Email</string>
+    <string name="password">Password</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="registrar">Nuevo Usuario</string>
+    <string name="usuarioExistente">El usuario existe</string>
+    <string name="nombre">Nombre</string>
+    <string name="tarea">Ingresar Tarea</string>
+    <string name="fecha">Ingresar Fecha</string>
+    <string name="Calendario">Calendario</string>
+    <string name="dialog_message">Ingrese Informacion</string>
+    <string name="dialog_title">Tareas</string>
+    <string name="Agregar">Agregar</string>
+    <string name="TareaRegistrada">Registro Realizado</string>
+    <string name="CamposVaciosTarea">Campos Obligatorios</string>
+    <string name="registroUsuario">Usuario Registrado</string>
+</resources>
