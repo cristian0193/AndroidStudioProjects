@@ -1,6 +1,6 @@
 <application>
   <component name="Git.Application.Settings">
-    <option name="myPathToGit" value="C:\Users\CRODRIGUEZ\AndroidStudioProjects\TODO-APP\app\.gitignore" />
+    <option name="myPathToGit" value="https://github.com/jggomez/TODO-APP.git" />
     <option name="SSH_EXECUTABLE" value="IDEA_SSH" />
   </component>
 </application>
