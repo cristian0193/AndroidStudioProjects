@@ -49,7 +49,7 @@ public class ListPresenter implements IListPresenter{
         //ENVIO A FIREBASE
         referencia.child(FirebaseReferences.USER_HIJO_NODO_PADRE).child(usuario).child(FirebaseReferences.TAREA_NODO_USER_HIJO).push().setValue(objTarea);
 
-        ltarea.addTarea(objTarea);
+        //ltarea.addTarea(objTarea);
         view.refrescarListaTareas();
     }
 

@@ -48,6 +48,7 @@ public class ListPresenter implements IListPresenter{
         referencia.child(usuario).push().setValue(objTarea);
 
         ltarea.addTarea(objTarea);
+        ltarea.removeTarea(objTarea);
         view.refrescarListaTareas();
     }
 

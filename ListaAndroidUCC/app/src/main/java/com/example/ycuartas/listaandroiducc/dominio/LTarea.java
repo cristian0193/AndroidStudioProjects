@@ -16,8 +16,8 @@ public class LTarea implements ILtarea {
     }
 
     @Override
-    public void removeTarea(int posicion) {
-        lstTarea.remove(posicion);
+    public void removeTarea(Tarea tarea) {
+        lstTarea.remove(tarea);
     }
 
     @Override

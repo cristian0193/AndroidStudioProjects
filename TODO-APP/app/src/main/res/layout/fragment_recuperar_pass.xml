@@ -1,0 +1,54 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="co.edu.ucc.todolist.vistas.fragmentos.RecuperarPassFragment"
+    android:weightSum="1"
+    android:padding="15dp">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:orientation="vertical"
+           android:layout_weight="0.5">
+
+           <ImageView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:src="@mipmap/ic_launcher" />
+
+       </LinearLayout>
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_weight="0.5"
+           android:layout_marginTop="20dp">
+
+           <EditText
+               android:id="@+id/txtCorreoElectronico"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="@string/IngresarCorreo"
+               android:layout_gravity="center_vertical" />
+
+       </LinearLayout>
+
+       <Button
+           android:id="@+id/btnRecuperar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           style="@style/BtnAuthStyle"
+           android:text="@string/Enviar"/>
+
+
+   </LinearLayout>
+
+</FrameLayout>

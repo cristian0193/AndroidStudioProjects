@@ -92,7 +92,7 @@ public class RegistroActivity extends AppCompatActivity {
                                         ObjUsuario.setNombre(nombre);
                                         ObjUsuario.setToken(task.getResult().getToken());
 
-                                        referencia.child(FirebaseReferences.USER_HIJO_NODO_PADRE).push().setValue(ObjUsuario);
+                                       // referencia.child(FirebaseReferences.USER_HIJO_NODO_PADRE).push().setValue(ObjUsuario);
 
                                         Toast.makeText(RegistroActivity.this, R.string.registroUsuario,
                                                 Toast.LENGTH_SHORT).show();

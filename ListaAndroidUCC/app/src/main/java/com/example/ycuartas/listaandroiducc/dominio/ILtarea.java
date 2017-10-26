@@ -8,7 +8,7 @@ public interface ILtarea {
 
     void addTarea(Tarea tarea);
 
-    void removeTarea(int posicion);
+    void removeTarea(Tarea tarea);
 
     List<Tarea> getLstTarea();
 

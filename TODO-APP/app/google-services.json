@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "94587261372",
+    "firebase_url": "https://todolist-a1ff6.firebaseio.com",
+    "project_id": "todolist-a1ff6",
+    "storage_bucket": "todolist-a1ff6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94587261372:android:9cc67a2cdd8200f4",
+        "android_client_info": {
+          "package_name": "co.edu.ucc.todolist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94587261372-c47q29eenqjqp4tai0qthjliiuqin786.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxuB70wOibZ2JqMwzXmuhbU6O8G9GNMEE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
