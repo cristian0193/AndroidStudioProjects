@@ -127,6 +127,14 @@ public class LoginFragment extends Fragment implements ILoginFragmentView {
         }
     }
 
+    @OnClick(R.id.txtRecordarContrasena)
+    @Override
+    public void irARecuperar() {
+        if (mListener != null) {
+            mListener.irARecuperar();
+        }
+    }
+
     @Override
     public void finalizarLogin() {
         if (mListener != null) {
@@ -143,5 +151,6 @@ public class LoginFragment extends Fragment implements ILoginFragmentView {
 
         void finalizarLogin();
         void irARegistro();
+        void irARecuperar();
     }
 }

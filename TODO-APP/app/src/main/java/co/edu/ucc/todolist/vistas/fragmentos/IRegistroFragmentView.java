@@ -11,8 +11,8 @@ public interface IRegistroFragmentView {
     void mostrarProgress();
     void ocultarProgress();
     void registrar();
-    void mostrarError(String error);
     void irALogin();
     void finalizarRegistro();
+    void mostrarError(String error);
 
 }

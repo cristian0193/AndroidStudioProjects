@@ -12,7 +12,7 @@ import co.edu.ucc.todolist.vistas.fragmentos.RegistroFragment;
 
 public class AuthActivity extends AppCompatActivity
         implements LoginFragment.OnLoginFragmentInteraction,
-        RegistroFragment.OnRegistroInteractionListener {
+        RegistroFragment.OnRegistroInteractionListener,RecuperarPassFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,14 @@ public class AuthActivity extends AppCompatActivity
     }
 
     private void initFragment() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.frameAuthActivity, LoginFragment.newInstance());
+        transaction.commit();
+    }
+
+    @Override
+    public void irALogin() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         transaction.replace(R.id.frameAuthActivity, LoginFragment.newInstance());
@@ -45,20 +53,27 @@ public class AuthActivity extends AppCompatActivity
     }
 
     @Override
-    public void irALogin() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        transaction.replace(R.id.frameAuthActivity, LoginFragment.newInstance());
-        transaction.commit();
-    }
-
-    @Override
     public void finalizarRegistro() {
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
         finish();
     }
 
+    @Override
+    public void irARecuperar() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.frameAuthActivity, RecuperarPassFragment.newInstance());
+        transaction.commit();
+    }
+
+    @Override
+    public void finalizarRecuperacion() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.frameAuthActivity, LoginFragment.newInstance());
+        transaction.commit();
+    }
 
 
 }

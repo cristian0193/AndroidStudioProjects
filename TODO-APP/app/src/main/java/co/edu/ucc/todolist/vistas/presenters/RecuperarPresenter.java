@@ -29,6 +29,7 @@ public class RecuperarPresenter implements IRecuperarPresenter {
                 @Override
                 public void success(String data) {
                     view.mostrarConfirmacion(data.toUpperCase());
+                    view.finalizarRecuperacion();
                 }
 
                 @Override

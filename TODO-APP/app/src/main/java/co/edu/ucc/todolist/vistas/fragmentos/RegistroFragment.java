@@ -144,7 +144,6 @@ public class RegistroFragment extends Fragment implements IRegistroFragmentView 
     public interface OnRegistroInteractionListener {
 
         void irALogin();
-
         void finalizarRegistro();
 
     }

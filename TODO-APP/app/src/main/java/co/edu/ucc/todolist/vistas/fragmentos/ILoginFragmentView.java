@@ -12,6 +12,7 @@ public interface ILoginFragmentView {
     void ocultarProgress();
     void login();
     void irARegistro();
+    void irARecuperar();
     void finalizarLogin();
     void mostrarError(String mensaje);
 

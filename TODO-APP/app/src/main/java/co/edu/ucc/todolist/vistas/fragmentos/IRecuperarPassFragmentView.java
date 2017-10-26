@@ -7,8 +7,11 @@ package co.edu.ucc.todolist.vistas.fragmentos;
 public interface IRecuperarPassFragmentView {
 
     void mostrarConfirmacion(String mensaje);
-    void recuperar();
-    void finalizarRecuperacion();
-    void irALogin();
 
+    void recuperar();
+    void mostrarProgress();
+    void ocultarProgress();
+    void irALogin();
+    void finalizarRecuperacion();
+    void mostrarError(String error);
 }
