@@ -1,7 +1,7 @@
-package co.edu.ucc.todolist.dominio;
+package com.example.crodriguez.questionandroidproject.dominio;
 
 /**
- * Created by jggomez on 24-Oct-17.
+ * Created by CRODRIGUEZ on 8/11/2017.
  */
 
 public interface CallBackInteractor<T> {

@@ -14,7 +14,6 @@ public interface ILUsuario {
     void authUsuario(String email, String password,
                      CallBackInteractor<String> callBackInteractor);
 
-
     void RecuperarPassUsuario(String email,
                      CallBackInteractor<String> callBackInteractor);
 
