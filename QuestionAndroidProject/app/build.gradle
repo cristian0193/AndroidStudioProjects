@@ -38,6 +38,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
 }
 
 

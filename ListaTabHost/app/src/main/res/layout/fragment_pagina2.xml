@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.crodriguez.questionandroidproject.vista.fragmentos.MisPreguntasFragment">
+    tools:context="com.example.crodriguez.listatabhost.Pagina2Fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/mis_preguntas" />
+        android:text="@string/pagina2" />
 
 </FrameLayout>
