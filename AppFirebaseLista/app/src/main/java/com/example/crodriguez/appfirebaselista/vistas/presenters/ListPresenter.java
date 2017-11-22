@@ -28,7 +28,6 @@ public class ListPresenter implements IListPresenter{
         ltarea = new LTarea();
 
         auth = FirebaseAuth.getInstance();
-
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();

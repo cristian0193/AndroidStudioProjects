@@ -7,7 +7,7 @@ public class Pregunta {
     private String descripcion;
     private String fecha;
     private String categoria;
-    private String respuestas;
+    private boolean respuestas;
 
     public Pregunta() {
     }
@@ -44,11 +44,11 @@ public class Pregunta {
         this.categoria = categoria;
     }
 
-    public String getRespuestas() {
+    public boolean isRespuestas() {
         return respuestas;
     }
 
-    public void setRespuestas(String respuestas) {
+    public void setRespuestas(boolean respuestas) {
         this.respuestas = respuestas;
     }
 }
