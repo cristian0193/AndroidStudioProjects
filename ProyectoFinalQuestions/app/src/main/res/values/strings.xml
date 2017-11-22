@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ProyectoFinalQuestions</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="email">E-mail</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="no_cuenta">No tienes una cuenta !!</string>
+    <string name="registro">Registro</string>
+    <string name="recordar_contrasena">Recordar Contraseña</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="salir">Salir</string>
+    <string name="nombres">Nombres</string>
+    <string name="crear_cuenta">Crear Cuenta</string>
+    <string name="tienes_cuenta">Ya tienes una cuenta !!</string>
+    <string name="IngresarCorreo">Ingresar Correo Electronico :</string>
+    <string name="Enviar">Recuperar Password</string>
+    <string name="pregunta">Este el el fragment de preguntas</string>
+    <string name="mis_preguntas">Este es el fragment de mis preguntas</string>
+    <string name="tab_text_1">PREGUNTAS</string>
+    <string name="tab_text_2">MIS PREGUNTAS</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>

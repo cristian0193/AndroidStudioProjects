@@ -8,5 +8,4 @@ public interface IListView {
 
     void refrescarTarea(int posicion);
 
-
 }

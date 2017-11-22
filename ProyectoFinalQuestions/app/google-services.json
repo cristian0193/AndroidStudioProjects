@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "957065556873",
+    "firebase_url": "https://proyectofinalelectiva1.firebaseio.com",
+    "project_id": "proyectofinalelectiva1",
+    "storage_bucket": "proyectofinalelectiva1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957065556873:android:106256e0dad83c25",
+        "android_client_info": {
+          "package_name": "com.example.crodriguez.proyectofinalquestions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957065556873-4c8tbprpqsgr7o7nqipo7vuv24enl6i0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.crodriguez.proyectofinalquestions",
+            "certificate_hash": "b723d084602cbaa4ec42d5d5533ca7b751f61628"
+          }
+        },
+        {
+          "client_id": "957065556873-nb7pvstsjkgbs7e7giogpt1pkdodte73.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsQKQukCV8KekU6Y3Cc1htahC7x3V06ak"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957065556873-nb7pvstsjkgbs7e7giogpt1pkdodte73.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
