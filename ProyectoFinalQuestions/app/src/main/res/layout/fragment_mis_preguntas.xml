@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.crodriguez.proyectofinalquestions.vista.fragmentos.MisPreguntasFragment">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerIdMisPregunta"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/mis_preguntas" />
+        android:layout_height="wrap_content" />
 
 </FrameLayout>

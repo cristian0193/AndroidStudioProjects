@@ -13,11 +13,9 @@ import com.example.crodriguez.proyectofinalquestions.vista.utilidades.Utilidades
 
 import java.util.ArrayList;
 
-/**
- * Created by CHENAO on 13/07/2017.
- */
-
-public class AdaptadorRecyclerView extends RecyclerView.Adapter<AdaptadorRecyclerView.PersonajesViewHolder> implements View.OnClickListener {
+public class AdaptadorRecyclerView
+        extends RecyclerView.Adapter<AdaptadorRecyclerView.PersonajesViewHolder>
+        implements View.OnClickListener {
 
     ArrayList<PersonajeVo> listaPersonajes;
     private View.OnClickListener listener;

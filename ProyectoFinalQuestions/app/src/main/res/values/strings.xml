@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProyectoFinalQuestions</string>
+    <string name="app_name"></string>
     <string name="title_activity_maps">Map</string>
     <string name="email">E-mail</string>
     <string name="contrasena">Contraseña</string>
@@ -55,7 +55,7 @@
     <string name="PreguntaRegistrada">Pregunta Registrada con Exito</string>
     <string name="preguntas">Pregunta</string>
     <string name="ok">Aceptar</string>
-    <string name="dialog_title">Ingresar una Pregunta</string>
+    <string name="dialog_title">¿Pregunta?</string>
     <string name="dialog_message">Datos Obligatorios</string>
     <string name="Agregar">Agregar</string>
     <string name="ingresoFacebook">Ingreso con Facebook</string>
@@ -105,6 +105,8 @@
     <string name="trunks_descripcion_corta">Trunks es un personaje de ficción de la serie de manga y anime Dragon Ball de Akira Toriyama. </string>
     <string name="trunks_descripcion_Larga">Trunks es un personaje de ficción de la serie de manga y anime Dragon Ball de Akira Toriyama.
         Hizo su primera aparición en el capitulo #331 "El joven misterioso", publicado en la revista Shūkan Shōnen Jump el 15 de julio de 1991.</string>
+    <string name="Respuesta">Respuesta :</string>
+    <string name="IngresarRespuesta">Ingrese una respuesta ....</string>
 
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.crodriguez.proyectofinalquestions.vista.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,11 +24,14 @@ import android.widget.Toast;
 
 import com.example.crodriguez.proyectofinalquestions.R;
 import com.example.crodriguez.proyectofinalquestions.modelo.PersonajeVo;
-import com.example.crodriguez.proyectofinalquestions.vista.fragmentos.DetallePersonajeFragment;
 import com.example.crodriguez.proyectofinalquestions.vista.fragmentos.IPreguntaFragmentView;
 import com.example.crodriguez.proyectofinalquestions.vista.fragmentos.MisPreguntasFragment;
 import com.example.crodriguez.proyectofinalquestions.vista.fragmentos.PreguntasFragment;
+import com.example.crodriguez.proyectofinalquestions.vista.presenters.IPreguntaPresenter;
+import com.example.crodriguez.proyectofinalquestions.vista.presenters.PreguntaPresenter;
 import com.example.crodriguez.proyectofinalquestions.vista.utilidades.Utilidades;
+
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,13 +39,13 @@ import butterknife.OnClick;
 
 public class MenuActivity extends AppCompatActivity
         implements PreguntasFragment.OnFragmentInteractionListener,
-                    MisPreguntasFragment.OnFragmentInteractionListener,
-                    DetallePersonajeFragment.OnFragmentInteractionListener,IPreguntaFragmentView{
+                    MisPreguntasFragment.OnFragmentInteractionListener{
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     PreguntasFragment listaFragment;
-    DetallePersonajeFragment detalleFragment;
+    IPreguntaPresenter preguntaPresenter;
+    MisPreguntasFragment listaFragmentmispreguntas;
 
 
     @BindView(R.id.fab)
@@ -64,15 +68,20 @@ public class MenuActivity extends AppCompatActivity
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        preguntaPresenter = new PreguntaPresenter();
+
         //Validamos que se trabaja en modo portrait desde un smarthPhone
         if(findViewById(R.id.container)!=null){
             Utilidades.PORTRAIT=true;
+
             if (savedInstanceState!=null){
                 return;
             }
             listaFragment=new PreguntasFragment();
-            getSupportFragmentManager().beginTransaction().
-                    replace(R.id.container,listaFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,listaFragment).commit();
+
+            listaFragmentmispreguntas=new MisPreguntasFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,listaFragmentmispreguntas).commit();
         }else{
             Utilidades.PORTRAIT=false;
         }
@@ -82,7 +91,7 @@ public class MenuActivity extends AppCompatActivity
 
     @OnClick(R.id.fab)
     public void AgregarPregunta(){
-        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,14 +107,22 @@ public class MenuActivity extends AppCompatActivity
                 mBuilder.setPositiveButton(R.string.Agregar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        String tareaIngresada = "";
+                        String preguntaIngresada = "";
                         String categoriaIngresada = "";
 
-                        tareaIngresada = etTarea.getText().toString();
+                        preguntaIngresada = etTarea.getText().toString();
                         categoriaIngresada = etCategoria.getText().toString();
 
-                        if (!tareaIngresada.equals("") && !categoriaIngresada.equals("")) {
-                           // listPresenter.addTarea(tareaIngresada, categoriaIngresada);
+                        if (!preguntaIngresada.equals("") && !categoriaIngresada.equals("")) {
+
+                            java.util.Date fecha = new Date();
+                            int dia = fecha.getDay();
+                            int mes = fecha.getMonth();
+                            int ano = fecha.getYear();
+
+                            String formato = dia + "/" + mes + "/" + ano;
+                            
+                            preguntaPresenter.addPregunta(preguntaIngresada,categoriaIngresada,formato,false,"");
                             Toast.makeText(getApplicationContext(), R.string.PreguntaRegistrada, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(getApplicationContext(), R.string.CamposVaciosTarea, Toast.LENGTH_SHORT).show();
@@ -120,7 +137,6 @@ public class MenuActivity extends AppCompatActivity
         });
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -134,7 +150,9 @@ public class MenuActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.accion_salir) {
-            return true;
+            Intent intent = new Intent(this, PrincipalActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -143,26 +161,6 @@ public class MenuActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
-    }
-
-    @Override
-    public void enviarPreguntas(PersonajeVo personaje) {
-        detalleFragment= (DetallePersonajeFragment) this.getSupportFragmentManager().
-                findFragmentById(R.id.fragDetalle);
-
-        if(detalleFragment!=null && findViewById(R.id.container)==null){
-            detalleFragment.asignarInformacion(personaje);
-        }else{
-            detalleFragment=new DetallePersonajeFragment();
-            Bundle bundleEnvio=new Bundle();
-            bundleEnvio.putSerializable("objeto",personaje);
-            detalleFragment.setArguments(bundleEnvio);
-
-            //cargamos el fragment en el Activity
-            getSupportFragmentManager().beginTransaction().
-                    replace(R.id.container,detalleFragment).
-                    addToBackStack(null).commit();
-        }
     }
 
     public static class PlaceholderFragment extends Fragment {

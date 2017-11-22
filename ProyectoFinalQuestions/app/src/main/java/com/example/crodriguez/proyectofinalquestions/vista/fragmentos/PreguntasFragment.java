@@ -23,8 +23,6 @@ import com.example.crodriguez.proyectofinalquestions.vista.adaptadores.Adaptador
 import java.nio.Buffer;
 import java.util.ArrayList;
 
-import butterknife.ButterKnife;
-
 public class PreguntasFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -35,8 +33,8 @@ public class PreguntasFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    ArrayList<PersonajeVo> listaPersonaje;
-    RecyclerView recyclerPersonajes;
+    ArrayList<PersonajeVo> listaPreguntas;
+    RecyclerView recyclerPreguntas;
 
     Activity actividad;
     IPreguntaFragmentView interfaceComunicaFragments;
@@ -65,46 +63,42 @@ public class PreguntasFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_preguntas, container, false);
 
-        listaPersonaje=new ArrayList<>();
-        recyclerPersonajes= (RecyclerView) view.findViewById(R.id.recyclerId);
-        recyclerPersonajes.setLayoutManager(new LinearLayoutManager(getContext()));
+        listaPreguntas=new ArrayList<>();
+        recyclerPreguntas= (RecyclerView) view.findViewById(R.id.recyclerId);
+        recyclerPreguntas.setLayoutManager(new LinearLayoutManager(getContext()));
 
         llenarListaPersonajes();
 
-        AdaptadorRecyclerView adapter=new AdaptadorRecyclerView(listaPersonaje);
-        recyclerPersonajes.setAdapter(adapter);
+        AdaptadorRecyclerView adapter=new AdaptadorRecyclerView(listaPreguntas);
+        recyclerPreguntas.setAdapter(adapter);
 
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(),"Seleccion: "+
-                        listaPersonaje.get(recyclerPersonajes.
+                        listaPreguntas.get(recyclerPreguntas.
                                 getChildAdapterPosition(view)).getNombre(),Toast.LENGTH_SHORT).show();
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
-                View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_sigin, null);
-                mBuilder.setMessage(listaPersonaje.get(recyclerPersonajes.
+                View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_sigin_respuesta, null);
+                mBuilder.setMessage(listaPreguntas.get(recyclerPreguntas.
                         getChildAdapterPosition(view)).getNombre()).setTitle(R.string.dialog_title);
 
-                String stTarea = listaPersonaje.get(recyclerPersonajes.getChildAdapterPosition(view)).getNombre();
+                String stTarea = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getNombre();
 
                 mBuilder.setView(mView);
 
-                final EditText etTarea = (EditText) mView.findViewById(R.id.etTarea);
-                final EditText etCategoria = (EditText) mView.findViewById(R.id.etCategoria);
-
+                final EditText etRespuesta = (EditText) mView.findViewById(R.id.etRespuesta);
 
                 mBuilder.setPositiveButton(R.string.Agregar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        String tareaIngresada = "";
-                        String categoriaIngresada = "";
+                        String respuestaIngresada = "";
 
-                        tareaIngresada = etTarea.getText().toString();
-                        categoriaIngresada = etCategoria.getText().toString();
+                        respuestaIngresada = etRespuesta.getText().toString();
 
-                        if (!tareaIngresada.equals("") && !categoriaIngresada.equals("")) {
-                            // listPresenter.addTarea(tareaIngresada, categoriaIngresada);
+                        if (!respuestaIngresada.equals("")) {
+                            // listPresenter.addTarea(respuestaIngresada, categoriaIngresada);
                             Toast.makeText(getActivity(), R.string.PreguntaRegistrada, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(getActivity(), R.string.CamposVaciosTarea, Toast.LENGTH_SHORT).show();
@@ -124,25 +118,25 @@ public class PreguntasFragment extends Fragment {
 
 
     private void llenarListaPersonajes() {
-        listaPersonaje.add(new PersonajeVo(getString(R.string.goku_nombre), getString(R.string.goku_descripcion_corta),
+        listaPreguntas.add(new PersonajeVo(getString(R.string.goku_nombre), getString(R.string.goku_descripcion_corta),
                 getString(R.string.goku_descripcion_Larga), R.drawable.goku_cara,R.drawable.goku_detalle));
 
-        listaPersonaje.add(new PersonajeVo(getString(R.string.gohan_nombre), getString(R.string.gohan_descripcion_corta),
+        listaPreguntas.add(new PersonajeVo(getString(R.string.gohan_nombre), getString(R.string.gohan_descripcion_corta),
                 getString(R.string.gohan_descripcion_Larga), R.drawable.gohan_cara,R.drawable.gohan_detalle));
 
-        listaPersonaje.add(new PersonajeVo(getString(R.string.goten_nombre), getString(R.string.goten_descripcion_corta),
+        listaPreguntas.add(new PersonajeVo(getString(R.string.goten_nombre), getString(R.string.goten_descripcion_corta),
                 getString(R.string.goten_descripcion_Larga), R.drawable.goten_cara,R.drawable.goten_detalle));
 
-        listaPersonaje.add(new PersonajeVo(getString(R.string.krilin_nombre), getString(R.string.krilin_descripcion_corta),
+        listaPreguntas.add(new PersonajeVo(getString(R.string.krilin_nombre), getString(R.string.krilin_descripcion_corta),
                 getString(R.string.krilin_descripcion_Larga), R.drawable.krilin_cara,R.drawable.krilin_detalle));
 
-        listaPersonaje.add(new PersonajeVo(getString(R.string.picoro_nombre), getString(R.string.picoro_descripcion_corta),
+        listaPreguntas.add(new PersonajeVo(getString(R.string.picoro_nombre), getString(R.string.picoro_descripcion_corta),
                 getString(R.string.picoro_descripcion_Larga), R.drawable.picoro_cara,R.drawable.picoro_detalle));
 
-        listaPersonaje.add(new PersonajeVo(getString(R.string.trunks_nombre), getString(R.string.trunks_descripcion_corta),
+        listaPreguntas.add(new PersonajeVo(getString(R.string.trunks_nombre), getString(R.string.trunks_descripcion_corta),
                 getString(R.string.trunks_descripcion_Larga), R.drawable.trunks_cara,R.drawable.trunks_detalle));
 
-        listaPersonaje.add(new PersonajeVo(getString(R.string.vegueta_nombre), getString(R.string.vegueta_descripcion_corta),
+        listaPreguntas.add(new PersonajeVo(getString(R.string.vegueta_nombre), getString(R.string.vegueta_descripcion_corta),
                 getString(R.string.vegueta_descripcion_Larga), R.drawable.vegueta_cara,R.drawable.vegueta_detalle));
     }
 

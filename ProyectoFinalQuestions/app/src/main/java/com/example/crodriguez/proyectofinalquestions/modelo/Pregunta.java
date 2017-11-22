@@ -3,34 +3,21 @@ package com.example.crodriguez.proyectofinalquestions.modelo;
 
 public class Pregunta {
 
-    private String usuario;
-    private String descripcion;
+    private String descripcion_pregunta;
     private String fecha;
     private String categoria;
     private boolean respuestas;
+    private String descripcion_respuestas;
 
-    public Pregunta(String usuario, String descripcion, String fecha, String categoria, boolean respuestas) {
-        this.usuario = usuario;
-        this.descripcion = descripcion;
-        this.fecha = fecha;
-        this.categoria = categoria;
-        this.respuestas = respuestas;
+    public Pregunta() {
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getDescripcion_pregunta() {
+        return descripcion_pregunta;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescripcion_pregunta(String descripcion_pregunta) {
+        this.descripcion_pregunta = descripcion_pregunta;
     }
 
     public String getFecha() {
@@ -55,5 +42,13 @@ public class Pregunta {
 
     public void setRespuestas(boolean respuestas) {
         this.respuestas = respuestas;
+    }
+
+    public String getDescripcion_respuestas() {
+        return descripcion_respuestas;
+    }
+
+    public void setDescripcion_respuestas(String descripcion_respuestas) {
+        this.descripcion_respuestas = descripcion_respuestas;
     }
 }
