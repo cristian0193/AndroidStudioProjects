@@ -9,7 +9,12 @@ public class Pregunta {
     private String categoria;
     private boolean respuestas;
 
-    public Pregunta() {
+    public Pregunta(String usuario, String descripcion, String fecha, String categoria, boolean respuestas) {
+        this.usuario = usuario;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.categoria = categoria;
+        this.respuestas = respuestas;
     }
 
     public String getUsuario() {

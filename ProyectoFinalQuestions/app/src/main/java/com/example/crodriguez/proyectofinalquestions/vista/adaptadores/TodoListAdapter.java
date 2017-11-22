@@ -1,6 +1,6 @@
 package com.example.crodriguez.proyectofinalquestions.vista.adaptadores;
 
-import android.graphics.Paint;
+/*import android.graphics.Paint;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,9 +17,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-/**
+*//**
  * Created by jggomez on 12-Sep-17.
- */
+ *//*
 
 public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ItemTodoList> {
 
@@ -102,4 +102,4 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ItemTo
         void itemCambioEstado(int posicion, boolean realizada);
 
     }
-}
+}*/

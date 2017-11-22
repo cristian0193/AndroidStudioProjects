@@ -1,16 +1,13 @@
 package com.example.crodriguez.proyectofinalquestions.vista.activities;
 
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,28 +17,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.crodriguez.proyectofinalquestions.R;
+import com.example.crodriguez.proyectofinalquestions.modelo.PersonajeVo;
+import com.example.crodriguez.proyectofinalquestions.vista.fragmentos.DetallePersonajeFragment;
+import com.example.crodriguez.proyectofinalquestions.vista.fragmentos.IPreguntaFragmentView;
 import com.example.crodriguez.proyectofinalquestions.vista.fragmentos.MisPreguntasFragment;
 import com.example.crodriguez.proyectofinalquestions.vista.fragmentos.PreguntasFragment;
-
-import java.util.Calendar;
+import com.example.crodriguez.proyectofinalquestions.vista.utilidades.Utilidades;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MenuActivity extends AppCompatActivity implements PreguntasFragment.OnFragmentInteractionListener,MisPreguntasFragment.OnFragmentInteractionListener{
+public class MenuActivity extends AppCompatActivity
+        implements PreguntasFragment.OnFragmentInteractionListener,
+                    MisPreguntasFragment.OnFragmentInteractionListener,
+                    DetallePersonajeFragment.OnFragmentInteractionListener,IPreguntaFragmentView{
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    PreguntasFragment listaFragment;
+    DetallePersonajeFragment detalleFragment;
+
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -62,6 +63,19 @@ public class MenuActivity extends AppCompatActivity implements PreguntasFragment
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        //Validamos que se trabaja en modo portrait desde un smarthPhone
+        if(findViewById(R.id.container)!=null){
+            Utilidades.PORTRAIT=true;
+            if (savedInstanceState!=null){
+                return;
+            }
+            listaFragment=new PreguntasFragment();
+            getSupportFragmentManager().beginTransaction().
+                    replace(R.id.container,listaFragment).commit();
+        }else{
+            Utilidades.PORTRAIT=false;
+        }
         
     }
 
@@ -129,6 +143,26 @@ public class MenuActivity extends AppCompatActivity implements PreguntasFragment
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void enviarPreguntas(PersonajeVo personaje) {
+        detalleFragment= (DetallePersonajeFragment) this.getSupportFragmentManager().
+                findFragmentById(R.id.fragDetalle);
+
+        if(detalleFragment!=null && findViewById(R.id.container)==null){
+            detalleFragment.asignarInformacion(personaje);
+        }else{
+            detalleFragment=new DetallePersonajeFragment();
+            Bundle bundleEnvio=new Bundle();
+            bundleEnvio.putSerializable("objeto",personaje);
+            detalleFragment.setArguments(bundleEnvio);
+
+            //cargamos el fragment en el Activity
+            getSupportFragmentManager().beginTransaction().
+                    replace(R.id.container,detalleFragment).
+                    addToBackStack(null).commit();
+        }
     }
 
     public static class PlaceholderFragment extends Fragment {

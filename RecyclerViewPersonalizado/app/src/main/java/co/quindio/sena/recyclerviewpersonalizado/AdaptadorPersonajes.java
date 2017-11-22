@@ -9,10 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by CHENAO on 3/07/2017.
- */
-
 public class AdaptadorPersonajes
         extends RecyclerView.Adapter<AdaptadorPersonajes.ViewHolderPersonajes>
         implements View.OnClickListener{
