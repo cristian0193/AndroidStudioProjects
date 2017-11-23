@@ -3,9 +3,9 @@ package com.example.crodriguez.proyectofinalquestions.modelo;
 
 public class FirebaseReferences {
 
-    final public static String NODO_PADRE = "BASE_DATOS";
-    final public static String USER_HIJO_NODO_PADRE = "PREGUNTA";
-
+    final public static String BASE_DATOS = "BASE_DATOS";
+    final public static String PREGUNTA = "PREGUNTA";
+    final public static String TODAS_PREGUNTAS = "TODAS_PREGUNTAS";
 }
 
 

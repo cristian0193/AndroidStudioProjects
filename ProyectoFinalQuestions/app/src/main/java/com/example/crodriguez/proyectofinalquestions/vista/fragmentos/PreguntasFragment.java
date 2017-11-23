@@ -1,11 +1,11 @@
 package com.example.crodriguez.proyectofinalquestions.vista.fragmentos;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,11 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.crodriguez.proyectofinalquestions.R;
 import com.example.crodriguez.proyectofinalquestions.modelo.FirebaseReferences;
-import com.example.crodriguez.proyectofinalquestions.modelo.PersonajeVo;
 import com.example.crodriguez.proyectofinalquestions.modelo.Pregunta;
 import com.example.crodriguez.proyectofinalquestions.vista.adaptadores.AdaptadorRecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,8 +27,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.nio.Buffer;
 import java.util.ArrayList;
 
 public class PreguntasFragment extends Fragment {
@@ -49,11 +48,12 @@ public class PreguntasFragment extends Fragment {
     ArrayList<Pregunta> listaPreguntas;
     RecyclerView recyclerPreguntas;
 
-    Activity actividad;
-    IPreguntaFragmentView interfaceComunicaFragments;
-
     public PreguntasFragment() {
+        auth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        referencia = mDatabase.getReference(FirebaseReferences.BASE_DATOS);
     }
 
     public static PreguntasFragment newInstance() {
@@ -77,13 +77,13 @@ public class PreguntasFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_preguntas, container, false);
 
-        listaPreguntas=new ArrayList<>();
-        recyclerPreguntas= (RecyclerView) view.findViewById(R.id.recyclerId);
+        listaPreguntas = new ArrayList<>();
+        recyclerPreguntas = (RecyclerView) view.findViewById(R.id.recyclerId);
         recyclerPreguntas.setLayoutManager(new LinearLayoutManager(getContext()));
 
         llenarListaPersonajes();
 
-        AdaptadorRecyclerView adapter=new AdaptadorRecyclerView(listaPreguntas);
+        AdaptadorRecyclerView adapter = new AdaptadorRecyclerView(listaPreguntas);
         recyclerPreguntas.setAdapter(adapter);
 
         adapter.setOnClickListener(new View.OnClickListener() {
@@ -92,18 +92,29 @@ public class PreguntasFragment extends Fragment {
 
                 String stCategoria = "";
                 String stPregunta = "";
+                String stRespuestaDetalle = "";
+                String stFecha = "";
                 Boolean stRespuesta;
+
 
                 stCategoria = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getCategoria();
                 stPregunta = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getDescripcion_pregunta();
+                stFecha = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getFecha();
                 stRespuesta = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).isRespuestas();
+                stRespuestaDetalle = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getDescripcion_respuestas();
 
-                if(stRespuesta){
+                if (stRespuesta) {
                     //VISUALIZAR UNA PREGUNTA RESUELTA
 
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
                     View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_sigin_respuesta_resuelta, null);
                     mBuilder.setMessage(stPregunta).setTitle(stCategoria);
+
+                    TextView txtFecha = (TextView) mView.findViewById(R.id.lbFecha);
+                    TextView txtRespuesta = (TextView) mView.findViewById(R.id.txtRespuestaUsuario);
+
+                    txtFecha.setText(stFecha);
+                    txtRespuesta.setText(stRespuestaDetalle);
 
                     mBuilder.setView(mView);
 
@@ -113,14 +124,14 @@ public class PreguntasFragment extends Fragment {
                             Intent intent = new Intent(Intent.ACTION_SEND);
                             intent.setType("text/plain");
                             intent.putExtra(Intent.EXTRA_TEXT, "El mejor blog de android http://javaheros.blogspot.pe/");
-                            startActivity(Intent.createChooser(intent, "Share with"));
+                            startActivity(Intent.createChooser(intent, "Compatir con"));
 
                         }
                     });
 
                     mBuilder.create();
                     mBuilder.show();
-                }else{
+                } else {
                     //REGISTRAR NUEVA RESPUESTA
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
                     View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_sigin_respuesta, null);
@@ -138,10 +149,12 @@ public class PreguntasFragment extends Fragment {
                             respuestaIngresada = etRespuesta.getText().toString();
 
                             if (!respuestaIngresada.equals("")) {
-
-                                Toast.makeText(getActivity(), R.string.PreguntaRegistrada, Toast.LENGTH_SHORT).show();
+                                guardarRespuesta(respuestaIngresada);
+                                Snackbar.make(getView(), R.string.PreguntaRegistrada, Snackbar.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(getActivity(), R.string.CamposVaciosTarea, Toast.LENGTH_SHORT).show();
+                                //guardarRespuesta(respuestaIngresada);
+                                Snackbar.make(getView(), R.string.CamposVaciosTarea, Snackbar.LENGTH_LONG).show();
+
                             }
                         }
                     });
@@ -149,12 +162,6 @@ public class PreguntasFragment extends Fragment {
                     mBuilder.create();
                     mBuilder.show();
                 }
-
-
-
-
-
-
 
             }
         });
@@ -166,35 +173,26 @@ public class PreguntasFragment extends Fragment {
 
     private void llenarListaPersonajes() {
 
-        auth = FirebaseAuth.getInstance();
-        user = FirebaseAuth.getInstance().getCurrentUser();
-
-        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
-        referencia = mDatabase.getReference(FirebaseReferences.NODO_PADRE);
-
-
-        String usuario = user.getEmail();
-        usuario = usuario.replace(".", "");
-
-        referencia.child(FirebaseReferences.USER_HIJO_NODO_PADRE).child("cristian@hotmailcom").addChildEventListener(new ChildEventListener() {
+        referencia.child(FirebaseReferences.TODAS_PREGUNTAS).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
                 Pregunta post = dataSnapshot.getValue(Pregunta.class);
                 String categoria = post.getCategoria();
                 String pregunta = post.getDescripcion_pregunta();
                 String fecha = post.getFecha();
                 boolean estado = post.isRespuestas();
+                String respuesta = post.getDescripcion_respuestas();
+                String key = post.getKEY();
 
-               listaPreguntas.add(new Pregunta(pregunta, fecha,categoria, estado, "" ,R.drawable.homero));
+
+                listaPreguntas.add(new Pregunta(pregunta, fecha, categoria, estado, respuesta, R.drawable.bart,key));
 
                 recyclerPreguntas.getAdapter().notifyDataSetChanged();
-                recyclerPreguntas.scrollToPosition(recyclerPreguntas.getAdapter().getItemCount()-1);
+                recyclerPreguntas.scrollToPosition(recyclerPreguntas.getAdapter().getItemCount() - 1);
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
 
             }
 
@@ -214,9 +212,11 @@ public class PreguntasFragment extends Fragment {
             }
         });
 
-
     }
 
+    private void guardarRespuesta(String respuesta) {
+        //Query valor = referencia.orderByChild(FirebaseReferences.TODAS_PREGUNTAS).equalTo("-KzbcT7x7heqOa47hSs");
+    }
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

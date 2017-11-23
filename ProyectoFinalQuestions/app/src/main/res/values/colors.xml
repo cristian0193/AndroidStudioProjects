@@ -6,4 +6,6 @@
     <color name="cardview_task">#757de8</color>
     <color name="blanco">#FFFFFF</color>
     <color name="negro">#000000</color>
+    <color name="verde">#087606</color>
+    <color name="verde_claro">#49f246</color>
 </resources>

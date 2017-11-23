@@ -8,14 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.crodriguez.proyectofinalquestions.R;
-import com.example.crodriguez.proyectofinalquestions.modelo.PersonajeVo;
 import com.example.crodriguez.proyectofinalquestions.modelo.Pregunta;
 import com.example.crodriguez.proyectofinalquestions.vista.utilidades.Utilidades;
 
 import java.util.ArrayList;
 
 public class AdaptadorRecyclerView
-        extends RecyclerView.Adapter<AdaptadorRecyclerView.PersonajesViewHolder>
+        extends RecyclerView.Adapter<AdaptadorRecyclerView.PreguntaViewHolder>
         implements View.OnClickListener {
 
     ArrayList<Pregunta> listaPregunta;
@@ -26,7 +25,7 @@ public class AdaptadorRecyclerView
     }
 
     @Override
-    public PersonajesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PreguntaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list,null,false);
         RecyclerView.LayoutParams layParams = new RecyclerView.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -34,22 +33,26 @@ public class AdaptadorRecyclerView
 
         view.setOnClickListener(this);
 
-        return new PersonajesViewHolder(view);
+        return new PreguntaViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(PersonajesViewHolder holder, int position) {
+    public void onBindViewHolder(PreguntaViewHolder holder, int position) {
         holder.txtCategoria.setText(listaPregunta.get(position).getCategoria());
         
         if (Utilidades.PORTRAIT==true){
+          
             holder.txtInformacion.setText(listaPregunta.get(position).getDescripcion_pregunta());
             holder.txtFecha.setText(listaPregunta.get(position).getFecha());
-
+            holder.txtRespuesta.setText(listaPregunta.get(position).getDescripcion_respuestas());
+            holder.txtKey.setText(listaPregunta.get(position).getKEY());
+           
             if(listaPregunta.get(position).isRespuestas()){
                 holder.txtEstado.setText("Respondida");
             }else{
                 holder.txtEstado.setText("No Respondida");
             }
+            
         }
 
         holder.foto.setImageResource(listaPregunta.get(position).getImagenId());
@@ -71,11 +74,11 @@ public class AdaptadorRecyclerView
         }
     }
 
-    public class PersonajesViewHolder extends RecyclerView.ViewHolder {
-        TextView txtCategoria,txtInformacion,txtFecha,txtEstado;
+    public class PreguntaViewHolder extends RecyclerView.ViewHolder {
+        TextView txtCategoria,txtInformacion,txtFecha,txtEstado,txtRespuesta,txtKey;
         ImageView foto;
 
-        public PersonajesViewHolder(View itemView) {
+        public PreguntaViewHolder(View itemView) {
             super(itemView);
             txtCategoria= (TextView) itemView.findViewById(R.id.idNombre);
 
@@ -85,6 +88,8 @@ public class AdaptadorRecyclerView
                 txtEstado = (TextView) itemView.findViewById(R.id.idEstado);
             }
 
+            txtRespuesta = (TextView) itemView.findViewById(R.id.idRespuesta);
+            txtKey = (TextView) itemView.findViewById(R.id.idKey);
             foto = (ImageView) itemView.findViewById(R.id.idImagen);
 
         }

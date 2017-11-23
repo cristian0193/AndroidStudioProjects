@@ -4,12 +4,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,6 +36,7 @@ import com.example.crodriguez.proyectofinalquestions.vista.presenters.IPreguntaP
 import com.example.crodriguez.proyectofinalquestions.vista.presenters.PreguntaPresenter;
 import com.example.crodriguez.proyectofinalquestions.vista.utilidades.Utilidades;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -39,7 +45,7 @@ import butterknife.OnClick;
 
 public class MenuActivity extends AppCompatActivity
         implements PreguntasFragment.OnFragmentInteractionListener,
-                    MisPreguntasFragment.OnFragmentInteractionListener{
+                    MisPreguntasFragment.OnFragmentInteractionListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -85,8 +91,8 @@ public class MenuActivity extends AppCompatActivity
         }else{
             Utilidades.PORTRAIT=false;
         }
-        
-    }
+
+   }
 
 
     @OnClick(R.id.fab)
@@ -115,14 +121,19 @@ public class MenuActivity extends AppCompatActivity
 
                         if (!preguntaIngresada.equals("") && !categoriaIngresada.equals("")) {
 
-                            java.util.Date fecha = new Date();
-                            int dia = fecha.getDay();
-                            int mes = fecha.getMonth();
-                            int ano = fecha.getYear();
+                            Calendar calendario = Calendar.getInstance();
+                            int dia, mes, ano;
+
+                            dia = calendario.get(Calendar.DATE);
+                            mes = calendario.get(Calendar.MONTH);
+                            ano = calendario.get(Calendar.YEAR);
 
                             String formato = dia + "/" + mes + "/" + ano;
-                            
+
                             preguntaPresenter.addPregunta(preguntaIngresada,formato,categoriaIngresada,false,"");
+                            preguntaPresenter.addTodasPregunta(preguntaIngresada,formato,categoriaIngresada,false,"");
+
+
                             Toast.makeText(getApplicationContext(), R.string.PreguntaRegistrada, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(getApplicationContext(), R.string.CamposVaciosTarea, Toast.LENGTH_SHORT).show();

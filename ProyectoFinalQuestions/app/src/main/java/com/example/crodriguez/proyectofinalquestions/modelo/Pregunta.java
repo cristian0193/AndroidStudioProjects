@@ -9,17 +9,19 @@ public class Pregunta {
     private boolean respuestas;
     private String descripcion_respuestas;
     private int imagenId;
+    private String KEY;
 
     public Pregunta() {
     }
 
-    public Pregunta(String descripcion_pregunta, String fecha, String categoria, boolean respuestas, String descripcion_respuestas, int imagenId) {
+    public Pregunta(String descripcion_pregunta, String fecha, String categoria, boolean respuestas, String descripcion_respuestas, int imagenId, String KEY) {
         this.descripcion_pregunta = descripcion_pregunta;
         this.fecha = fecha;
         this.categoria = categoria;
         this.respuestas = respuestas;
         this.descripcion_respuestas = descripcion_respuestas;
         this.imagenId = imagenId;
+        this.KEY = KEY;
     }
 
     public String getDescripcion_pregunta() {
@@ -68,5 +70,13 @@ public class Pregunta {
 
     public void setImagenId(int imagenId) {
         this.imagenId = imagenId;
+    }
+
+    public String getKEY() {
+        return KEY;
+    }
+
+    public void setKEY(String KEY) {
+        this.KEY = KEY;
     }
 }

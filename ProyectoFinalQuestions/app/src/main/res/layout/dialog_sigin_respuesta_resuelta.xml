@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
+    android:padding="25dp"
     android:weightSum="1">
 
     <LinearLayout
@@ -14,10 +14,10 @@
         <TextView
             android:id="@+id/lbFecha"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:text="@string/fecha"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/fab_margin"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -35,20 +35,21 @@
             android:text="@string/Respuesta"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
-            android:textSize="@dimen/fab_margin"/>
+            android:textSize="25dp"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"></LinearLayout>
 
     <TextView
         android:id="@+id/txtRespuestaUsuario"
         android:layout_width="match_parent"
-        android:layout_height="101dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/fab_margin"
+        android:layout_height="100dp"
+        android:textColor="@color/negro"
+        android:enabled="false"
+        android:textSize="23dp"
         android:textStyle="bold" />
-
-
-
 
 
 

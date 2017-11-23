@@ -13,6 +13,8 @@ public interface IPreguntaPresenter {
 
     void addPregunta( String pregunta, String fecha, String Categoria, boolean respuesta, String desc_respuesta);
 
+    void addTodasPregunta( String pregunta, String fecha, String Categoria, boolean respuesta, String desc_respuesta);
+
     List<Pregunta> obtenerPregunta();
 
     void itemCambioEstado(int posicion, boolean estado);

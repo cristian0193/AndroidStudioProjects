@@ -24,11 +24,31 @@ public class PreguntaPresenter implements IPreguntaPresenter{
 
 
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
-        referencia = mDatabase.getReference(FirebaseReferences.NODO_PADRE);
+        referencia = mDatabase.getReference(FirebaseReferences.BASE_DATOS);
     }
 
     @Override
     public void addPregunta( String pregunta, String fecha, String categoria, boolean respuesta, String desc_respuesta) {
+
+        String KEY = referencia.child(FirebaseReferences.TODAS_PREGUNTAS).push().getKey();
+        Pregunta objPregunta = new Pregunta();
+
+        objPregunta.setDescripcion_pregunta(pregunta);
+        objPregunta.setFecha(fecha);
+        objPregunta.setCategoria(categoria);
+        objPregunta.setRespuestas(respuesta);
+        objPregunta.setDescripcion_respuestas(desc_respuesta);
+        objPregunta.setKEY(KEY);
+
+        String usuario = user.getEmail();
+        usuario = usuario.replace(".", "");
+
+        referencia.child(FirebaseReferences.PREGUNTA).child(usuario).push().setValue(objPregunta);
+
+    }
+
+    @Override
+    public void addTodasPregunta(String pregunta, String fecha, String categoria, boolean respuesta, String desc_respuesta) {
 
         Pregunta objPregunta = new Pregunta();
 
@@ -38,12 +58,14 @@ public class PreguntaPresenter implements IPreguntaPresenter{
         objPregunta.setRespuestas(respuesta);
         objPregunta.setDescripcion_respuestas(desc_respuesta);
 
+        String KEY = referencia.child(FirebaseReferences.TODAS_PREGUNTAS).push().getKey();
+
+        objPregunta.setKEY(KEY);
+
         String usuario = user.getEmail();
         usuario = usuario.replace(".", "");
 
-        referencia.child(FirebaseReferences.USER_HIJO_NODO_PADRE).child(usuario).push().setValue(objPregunta);
-        
-        
+        referencia.child(FirebaseReferences.TODAS_PREGUNTAS).push().setValue(objPregunta);
     }
 
     @Override
