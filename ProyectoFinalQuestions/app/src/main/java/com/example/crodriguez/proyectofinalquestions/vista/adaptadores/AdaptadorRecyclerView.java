@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.crodriguez.proyectofinalquestions.R;
 import com.example.crodriguez.proyectofinalquestions.modelo.PersonajeVo;
+import com.example.crodriguez.proyectofinalquestions.modelo.Pregunta;
 import com.example.crodriguez.proyectofinalquestions.vista.utilidades.Utilidades;
 
 import java.util.ArrayList;
@@ -17,11 +18,11 @@ public class AdaptadorRecyclerView
         extends RecyclerView.Adapter<AdaptadorRecyclerView.PersonajesViewHolder>
         implements View.OnClickListener {
 
-    ArrayList<PersonajeVo> listaPersonajes;
+    ArrayList<Pregunta> listaPregunta;
     private View.OnClickListener listener;
 
-    public AdaptadorRecyclerView(ArrayList<PersonajeVo> listaPersonajes) {
-        this.listaPersonajes = listaPersonajes;
+    public AdaptadorRecyclerView(ArrayList<Pregunta> listaPregunta) {
+        this.listaPregunta = listaPregunta;
     }
 
     @Override
@@ -38,17 +39,19 @@ public class AdaptadorRecyclerView
 
     @Override
     public void onBindViewHolder(PersonajesViewHolder holder, int position) {
-        holder.txtNombre.setText(listaPersonajes.get(position).getNombre());
+        holder.txtCategoria.setText(listaPregunta.get(position).getCategoria());
+        
         if (Utilidades.PORTRAIT==true){
-            holder.txtInformacion.setText(listaPersonajes.get(position).getInfo());
+            holder.txtInformacion.setText(listaPregunta.get(position).getDescripcion_pregunta());
+            holder.txtFecha.setText(listaPregunta.get(position).getFecha());
         }
 
-        holder.foto.setImageResource(listaPersonajes.get(position).getImagenId());
+        holder.foto.setImageResource(listaPregunta.get(position).getImagenId());
     }
 
     @Override
     public int getItemCount() {
-        return listaPersonajes.size();
+        return listaPregunta.size();
     }
 
     public void setOnClickListener(View.OnClickListener listener){
@@ -63,14 +66,15 @@ public class AdaptadorRecyclerView
     }
 
     public class PersonajesViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNombre,txtInformacion;
+        TextView txtCategoria,txtInformacion,txtFecha;
         ImageView foto;
 
         public PersonajesViewHolder(View itemView) {
             super(itemView);
-            txtNombre= (TextView) itemView.findViewById(R.id.idNombre);
+            txtCategoria= (TextView) itemView.findViewById(R.id.idNombre);
             if (Utilidades.PORTRAIT==true){
                 txtInformacion= (TextView) itemView.findViewById(R.id.idInfo);
+                txtFecha = (TextView) itemView.findViewById(R.id.idFecha);
             }
 
             foto= (ImageView) itemView.findViewById(R.id.idImagen);

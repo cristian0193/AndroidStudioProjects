@@ -11,4 +11,6 @@ public interface IPreguntaFragmentView {
 
     public void enviarPreguntas(PersonajeVo personaje);
 
+    public void addPersonas(Pregunta preguntas);
+
 }

@@ -107,6 +107,9 @@
         Hizo su primera aparición en el capitulo #331 "El joven misterioso", publicado en la revista Shūkan Shōnen Jump el 15 de julio de 1991.</string>
     <string name="Respuesta">Respuesta :</string>
     <string name="IngresarRespuesta">Ingrese una respuesta ....</string>
+    <string name="Nombre">Nombre</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="estado">Estado</string>
 
 
 </resources>

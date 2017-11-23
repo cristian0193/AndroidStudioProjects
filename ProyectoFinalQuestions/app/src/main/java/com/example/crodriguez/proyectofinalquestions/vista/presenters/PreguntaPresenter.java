@@ -4,8 +4,6 @@ import android.widget.Toast;
 
 import com.example.crodriguez.proyectofinalquestions.modelo.FirebaseReferences;
 import com.example.crodriguez.proyectofinalquestions.modelo.Pregunta;
-import com.example.crodriguez.proyectofinalquestions.vista.activities.MenuActivity;
-import com.example.crodriguez.proyectofinalquestions.vista.fragmentos.IPreguntaFragmentView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -59,11 +57,9 @@ public class PreguntaPresenter implements IPreguntaPresenter{
 
     @Override
     public void itemCambioEstado(int posicion, boolean estado) {
-
     }
 
     @Override
     public void obtenerPreguntaFirebase() {
-
     }
 }

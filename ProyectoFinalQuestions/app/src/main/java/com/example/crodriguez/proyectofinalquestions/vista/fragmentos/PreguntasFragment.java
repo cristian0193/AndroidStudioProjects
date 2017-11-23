@@ -16,9 +16,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.crodriguez.proyectofinalquestions.R;
+import com.example.crodriguez.proyectofinalquestions.modelo.FirebaseReferences;
 import com.example.crodriguez.proyectofinalquestions.modelo.PersonajeVo;
-import com.example.crodriguez.proyectofinalquestions.vista.activities.MenuActivity;
+import com.example.crodriguez.proyectofinalquestions.modelo.Pregunta;
 import com.example.crodriguez.proyectofinalquestions.vista.adaptadores.AdaptadorRecyclerView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.nio.Buffer;
 import java.util.ArrayList;
@@ -31,15 +39,20 @@ public class PreguntasFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    DatabaseReference referencia;
+
     private OnFragmentInteractionListener mListener;
 
-    ArrayList<PersonajeVo> listaPreguntas;
+    ArrayList<Pregunta> listaPreguntas;
     RecyclerView recyclerPreguntas;
 
     Activity actividad;
     IPreguntaFragmentView interfaceComunicaFragments;
 
     public PreguntasFragment() {
+
     }
 
     public static PreguntasFragment newInstance() {
@@ -77,14 +90,17 @@ public class PreguntasFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getContext(),"Seleccion: "+
                         listaPreguntas.get(recyclerPreguntas.
-                                getChildAdapterPosition(view)).getNombre(),Toast.LENGTH_SHORT).show();
+                                getChildAdapterPosition(view)).getDescripcion_pregunta(),Toast.LENGTH_SHORT).show();
+
+                String stCategoria = "";
+                String stPregunta = "";
+
+                stCategoria = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getCategoria();
+                stPregunta = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getDescripcion_pregunta();
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
                 View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_sigin_respuesta, null);
-                mBuilder.setMessage(listaPreguntas.get(recyclerPreguntas.
-                        getChildAdapterPosition(view)).getNombre()).setTitle(R.string.dialog_title);
-
-                String stTarea = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getNombre();
+                mBuilder.setMessage(stPregunta).setTitle(stCategoria);
 
                 mBuilder.setView(mView);
 
@@ -98,7 +114,7 @@ public class PreguntasFragment extends Fragment {
                         respuestaIngresada = etRespuesta.getText().toString();
 
                         if (!respuestaIngresada.equals("")) {
-                            // listPresenter.addTarea(respuestaIngresada, categoriaIngresada);
+                            //listPresenter.addTarea(respuestaIngresada, categoriaIngresada);
                             Toast.makeText(getActivity(), R.string.PreguntaRegistrada, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(getActivity(), R.string.CamposVaciosTarea, Toast.LENGTH_SHORT).show();
@@ -118,26 +134,58 @@ public class PreguntasFragment extends Fragment {
 
 
     private void llenarListaPersonajes() {
-        listaPreguntas.add(new PersonajeVo(getString(R.string.goku_nombre), getString(R.string.goku_descripcion_corta),
-                getString(R.string.goku_descripcion_Larga), R.drawable.goku_cara,R.drawable.goku_detalle));
 
-        listaPreguntas.add(new PersonajeVo(getString(R.string.gohan_nombre), getString(R.string.gohan_descripcion_corta),
-                getString(R.string.gohan_descripcion_Larga), R.drawable.gohan_cara,R.drawable.gohan_detalle));
+        auth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
-        listaPreguntas.add(new PersonajeVo(getString(R.string.goten_nombre), getString(R.string.goten_descripcion_corta),
-                getString(R.string.goten_descripcion_Larga), R.drawable.goten_cara,R.drawable.goten_detalle));
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        referencia = mDatabase.getReference(FirebaseReferences.NODO_PADRE);
 
-        listaPreguntas.add(new PersonajeVo(getString(R.string.krilin_nombre), getString(R.string.krilin_descripcion_corta),
-                getString(R.string.krilin_descripcion_Larga), R.drawable.krilin_cara,R.drawable.krilin_detalle));
 
-        listaPreguntas.add(new PersonajeVo(getString(R.string.picoro_nombre), getString(R.string.picoro_descripcion_corta),
-                getString(R.string.picoro_descripcion_Larga), R.drawable.picoro_cara,R.drawable.picoro_detalle));
+        String usuario = user.getEmail();
+        usuario = usuario.replace(".", "");
 
-        listaPreguntas.add(new PersonajeVo(getString(R.string.trunks_nombre), getString(R.string.trunks_descripcion_corta),
-                getString(R.string.trunks_descripcion_Larga), R.drawable.trunks_cara,R.drawable.trunks_detalle));
+        //listaPreguntas.add(new Pregunta("¿Capital de Colombia?", "10/20/2017","Geografia", false, "" ,R.drawable.homero));
 
-        listaPreguntas.add(new PersonajeVo(getString(R.string.vegueta_nombre), getString(R.string.vegueta_descripcion_corta),
-                getString(R.string.vegueta_descripcion_Larga), R.drawable.vegueta_cara,R.drawable.vegueta_detalle));
+        referencia.child(FirebaseReferences.USER_HIJO_NODO_PADRE).child("cristian@hotmailcom").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                Pregunta post = dataSnapshot.getValue(Pregunta.class);
+                String categoria = post.getFecha();
+                String pregunta = post.getDescripcion_pregunta();
+                String fecha = post.getCategoria();
+                boolean estado = post.isRespuestas();
+
+               listaPreguntas.add(new Pregunta(pregunta, fecha,categoria, estado, "" ,R.drawable.homero));
+               
+                recyclerPreguntas.getAdapter().notifyDataSetChanged();
+                recyclerPreguntas.scrollToPosition(recyclerPreguntas.getAdapter().getItemCount()-1);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
 

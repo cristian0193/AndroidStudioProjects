@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.crodriguez.proyectofinalquestions.R;
 import com.example.crodriguez.proyectofinalquestions.modelo.PersonajeVo;
+import com.example.crodriguez.proyectofinalquestions.modelo.Pregunta;
 import com.example.crodriguez.proyectofinalquestions.vista.adaptadores.AdaptadorRecyclerView;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class MisPreguntasFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    ArrayList<PersonajeVo> listaMisPreguntas;
+    ArrayList<Pregunta> listaMisPreguntas;
     RecyclerView recyclerMisPreguntas;
 
     Activity actividad;
@@ -67,7 +68,7 @@ public class MisPreguntasFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mis_preguntas, container, false);
 
         listaMisPreguntas=new ArrayList<>();
-        recyclerMisPreguntas= (RecyclerView) view.findViewById(R.id.recyclerIdMisPregunta);
+        recyclerMisPreguntas = (RecyclerView) view.findViewById(R.id.recyclerIdMisPregunta);
         recyclerMisPreguntas.setLayoutManager(new LinearLayoutManager(getContext()));
 
         llenarListaPersonajes();
@@ -80,14 +81,18 @@ public class MisPreguntasFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Seleccion: " +
                         listaMisPreguntas.get(recyclerMisPreguntas.
-                                getChildAdapterPosition(view)).getNombre(), Toast.LENGTH_SHORT).show();
+                                getChildAdapterPosition(view)).getCategoria(), Toast.LENGTH_SHORT).show();
+
+                String stCategoria = "";
+                String stPregunta = "";
+
+                stCategoria = listaMisPreguntas.get(recyclerMisPreguntas.getChildAdapterPosition(view)).getCategoria();
+                stPregunta = listaMisPreguntas.get(recyclerMisPreguntas.getChildAdapterPosition(view)).getDescripcion_pregunta();
+
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
                 View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_sigin_respuesta, null);
-                mBuilder.setMessage(listaMisPreguntas.get(recyclerMisPreguntas.
-                        getChildAdapterPosition(view)).getNombre()).setTitle(R.string.dialog_title);
-
-                String stTarea = listaMisPreguntas.get(recyclerMisPreguntas.getChildAdapterPosition(view)).getNombre();
+                mBuilder.setMessage(stPregunta).setTitle(stCategoria);
 
                 mBuilder.setView(mView);
 
@@ -119,26 +124,8 @@ public class MisPreguntasFragment extends Fragment {
     }
 
             private void llenarListaPersonajes() {
-                listaMisPreguntas.add(new PersonajeVo(getString(R.string.goku_nombre), getString(R.string.goku_descripcion_corta),
-                        getString(R.string.goku_descripcion_Larga), R.drawable.goku_cara,R.drawable.goku_detalle));
-
-                listaMisPreguntas.add(new PersonajeVo(getString(R.string.gohan_nombre), getString(R.string.gohan_descripcion_corta),
-                        getString(R.string.gohan_descripcion_Larga), R.drawable.gohan_cara,R.drawable.gohan_detalle));
-
-                listaMisPreguntas.add(new PersonajeVo(getString(R.string.goten_nombre), getString(R.string.goten_descripcion_corta),
-                        getString(R.string.goten_descripcion_Larga), R.drawable.goten_cara,R.drawable.goten_detalle));
-
-                listaMisPreguntas.add(new PersonajeVo(getString(R.string.krilin_nombre), getString(R.string.krilin_descripcion_corta),
-                        getString(R.string.krilin_descripcion_Larga), R.drawable.krilin_cara,R.drawable.krilin_detalle));
-
-                listaMisPreguntas.add(new PersonajeVo(getString(R.string.picoro_nombre), getString(R.string.picoro_descripcion_corta),
-                        getString(R.string.picoro_descripcion_Larga), R.drawable.picoro_cara,R.drawable.picoro_detalle));
-
-                listaMisPreguntas.add(new PersonajeVo(getString(R.string.trunks_nombre), getString(R.string.trunks_descripcion_corta),
-                        getString(R.string.trunks_descripcion_Larga), R.drawable.trunks_cara,R.drawable.trunks_detalle));
-
-                listaMisPreguntas.add(new PersonajeVo(getString(R.string.vegueta_nombre), getString(R.string.vegueta_descripcion_corta),
-                        getString(R.string.vegueta_descripcion_Larga), R.drawable.vegueta_cara,R.drawable.vegueta_detalle));
+                listaMisPreguntas.add(new Pregunta(getString(R.string.goku_nombre), getString(R.string.goku_nombre),
+                        getString(R.string.goku_nombre), false, getString(R.string.goku_nombre) ,R.drawable.vegueta_cara));
             }
 
 
