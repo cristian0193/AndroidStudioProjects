@@ -41,11 +41,7 @@ public class PreguntaPresenter implements IPreguntaPresenter{
         String usuario = user.getEmail();
         usuario = usuario.replace(".", "");
 
-        //ENVIO A FIREBASE
         referencia.child(FirebaseReferences.USER_HIJO_NODO_PADRE).child(usuario).push().setValue(objPregunta);
-
-        //ltarea.addTarea(objPregunta);
-        //view.refrescarListaTareas();
         
         
     }

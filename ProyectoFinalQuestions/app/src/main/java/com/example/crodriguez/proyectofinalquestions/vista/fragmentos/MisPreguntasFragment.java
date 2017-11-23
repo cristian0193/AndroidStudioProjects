@@ -124,8 +124,8 @@ public class MisPreguntasFragment extends Fragment {
     }
 
             private void llenarListaPersonajes() {
-                listaMisPreguntas.add(new Pregunta(getString(R.string.goku_nombre), getString(R.string.goku_nombre),
-                        getString(R.string.goku_nombre), false, getString(R.string.goku_nombre) ,R.drawable.vegueta_cara));
+                listaMisPreguntas.add(new Pregunta("Prueba", "10/20/2017",
+                        "Prueba", false, "" ,R.drawable.vegueta_cara));
             }
 
 

@@ -44,6 +44,12 @@ public class AdaptadorRecyclerView
         if (Utilidades.PORTRAIT==true){
             holder.txtInformacion.setText(listaPregunta.get(position).getDescripcion_pregunta());
             holder.txtFecha.setText(listaPregunta.get(position).getFecha());
+
+            if(listaPregunta.get(position).isRespuestas()){
+                holder.txtEstado.setText("Respondida");
+            }else{
+                holder.txtEstado.setText("No Respondida");
+            }
         }
 
         holder.foto.setImageResource(listaPregunta.get(position).getImagenId());
@@ -66,18 +72,21 @@ public class AdaptadorRecyclerView
     }
 
     public class PersonajesViewHolder extends RecyclerView.ViewHolder {
-        TextView txtCategoria,txtInformacion,txtFecha;
+        TextView txtCategoria,txtInformacion,txtFecha,txtEstado;
         ImageView foto;
 
         public PersonajesViewHolder(View itemView) {
             super(itemView);
             txtCategoria= (TextView) itemView.findViewById(R.id.idNombre);
+
             if (Utilidades.PORTRAIT==true){
                 txtInformacion= (TextView) itemView.findViewById(R.id.idInfo);
                 txtFecha = (TextView) itemView.findViewById(R.id.idFecha);
+                txtEstado = (TextView) itemView.findViewById(R.id.idEstado);
             }
 
-            foto= (ImageView) itemView.findViewById(R.id.idImagen);
+            foto = (ImageView) itemView.findViewById(R.id.idImagen);
+
         }
     }
 }

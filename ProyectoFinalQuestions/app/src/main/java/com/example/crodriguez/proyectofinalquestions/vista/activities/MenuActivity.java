@@ -122,7 +122,7 @@ public class MenuActivity extends AppCompatActivity
 
                             String formato = dia + "/" + mes + "/" + ano;
                             
-                            preguntaPresenter.addPregunta(preguntaIngresada,categoriaIngresada,formato,false,"");
+                            preguntaPresenter.addPregunta(preguntaIngresada,formato,categoriaIngresada,false,"");
                             Toast.makeText(getApplicationContext(), R.string.PreguntaRegistrada, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(getApplicationContext(), R.string.CamposVaciosTarea, Toast.LENGTH_SHORT).show();

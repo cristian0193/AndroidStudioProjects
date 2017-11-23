@@ -3,6 +3,7 @@ package com.example.crodriguez.proyectofinalquestions.vista.fragmentos;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -88,42 +89,72 @@ public class PreguntasFragment extends Fragment {
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"Seleccion: "+
-                        listaPreguntas.get(recyclerPreguntas.
-                                getChildAdapterPosition(view)).getDescripcion_pregunta(),Toast.LENGTH_SHORT).show();
 
                 String stCategoria = "";
                 String stPregunta = "";
+                Boolean stRespuesta;
 
                 stCategoria = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getCategoria();
                 stPregunta = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getDescripcion_pregunta();
+                stRespuesta = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).isRespuestas();
 
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
-                View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_sigin_respuesta, null);
-                mBuilder.setMessage(stPregunta).setTitle(stCategoria);
+                if(stRespuesta){
+                    //VISUALIZAR UNA PREGUNTA RESUELTA
 
-                mBuilder.setView(mView);
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                    View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_sigin_respuesta_resuelta, null);
+                    mBuilder.setMessage(stPregunta).setTitle(stCategoria);
 
-                final EditText etRespuesta = (EditText) mView.findViewById(R.id.etRespuesta);
+                    mBuilder.setView(mView);
 
-                mBuilder.setPositiveButton(R.string.Agregar, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                    mBuilder.setPositiveButton(R.string.compartir, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
 
-                        String respuestaIngresada = "";
+                            Intent intent = new Intent(Intent.ACTION_SEND);
+                            intent.setType("text/plain");
+                            intent.putExtra(Intent.EXTRA_TEXT, "El mejor blog de android http://javaheros.blogspot.pe/");
+                            startActivity(Intent.createChooser(intent, "Share with"));
 
-                        respuestaIngresada = etRespuesta.getText().toString();
-
-                        if (!respuestaIngresada.equals("")) {
-                            //listPresenter.addTarea(respuestaIngresada, categoriaIngresada);
-                            Toast.makeText(getActivity(), R.string.PreguntaRegistrada, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getActivity(), R.string.CamposVaciosTarea, Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
 
-                mBuilder.create();
-                mBuilder.show();
+                    mBuilder.create();
+                    mBuilder.show();
+                }else{
+                    //REGISTRAR NUEVA RESPUESTA
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                    View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_sigin_respuesta, null);
+                    mBuilder.setMessage(stPregunta).setTitle(stCategoria);
+
+                    mBuilder.setView(mView);
+
+                    final EditText etRespuesta = (EditText) mView.findViewById(R.id.etRespuesta);
+
+                    mBuilder.setPositiveButton(R.string.Agregar, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            String respuestaIngresada = "";
+
+                            respuestaIngresada = etRespuesta.getText().toString();
+
+                            if (!respuestaIngresada.equals("")) {
+
+                                Toast.makeText(getActivity(), R.string.PreguntaRegistrada, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getActivity(), R.string.CamposVaciosTarea, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                    mBuilder.create();
+                    mBuilder.show();
+                }
+
+
+
+
+
+
 
             }
         });
@@ -145,20 +176,18 @@ public class PreguntasFragment extends Fragment {
         String usuario = user.getEmail();
         usuario = usuario.replace(".", "");
 
-        //listaPreguntas.add(new Pregunta("¿Capital de Colombia?", "10/20/2017","Geografia", false, "" ,R.drawable.homero));
-
         referencia.child(FirebaseReferences.USER_HIJO_NODO_PADRE).child("cristian@hotmailcom").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 Pregunta post = dataSnapshot.getValue(Pregunta.class);
-                String categoria = post.getFecha();
+                String categoria = post.getCategoria();
                 String pregunta = post.getDescripcion_pregunta();
-                String fecha = post.getCategoria();
+                String fecha = post.getFecha();
                 boolean estado = post.isRespuestas();
 
                listaPreguntas.add(new Pregunta(pregunta, fecha,categoria, estado, "" ,R.drawable.homero));
-               
+
                 recyclerPreguntas.getAdapter().notifyDataSetChanged();
                 recyclerPreguntas.scrollToPosition(recyclerPreguntas.getAdapter().getItemCount()-1);
             }
