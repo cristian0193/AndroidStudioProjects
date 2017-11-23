@@ -141,6 +141,9 @@ public class PreguntasFragment extends Fragment {
 
                     final EditText etRespuesta = (EditText) mView.findViewById(R.id.etRespuesta);
 
+                    final String finalStCategoria = stCategoria;
+                    final String finalStPregunta = stPregunta;
+                    final String finalStFecha = stFecha;
                     mBuilder.setPositiveButton(R.string.Agregar, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 
@@ -149,10 +152,10 @@ public class PreguntasFragment extends Fragment {
                             respuestaIngresada = etRespuesta.getText().toString();
 
                             if (!respuestaIngresada.equals("")) {
-                                guardarRespuesta(respuestaIngresada);
+                                guardarRespuestaTodasPreguntas(finalStCategoria, finalStPregunta, finalStFecha,respuestaIngresada);
+                                guardarRespuestaUsuario(finalStCategoria, finalStPregunta, finalStFecha,respuestaIngresada);
                                 Snackbar.make(getView(), R.string.PreguntaRegistrada, Snackbar.LENGTH_LONG).show();
                             } else {
-                                //guardarRespuesta(respuestaIngresada);
                                 Snackbar.make(getView(), R.string.CamposVaciosTarea, Snackbar.LENGTH_LONG).show();
 
                             }
@@ -167,15 +170,14 @@ public class PreguntasFragment extends Fragment {
         });
 
         return view;
-
     }
-
 
     private void llenarListaPersonajes() {
 
         referencia.child(FirebaseReferences.TODAS_PREGUNTAS).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
                 Pregunta post = dataSnapshot.getValue(Pregunta.class);
                 String categoria = post.getCategoria();
                 String pregunta = post.getDescripcion_pregunta();
@@ -183,7 +185,6 @@ public class PreguntasFragment extends Fragment {
                 boolean estado = post.isRespuestas();
                 String respuesta = post.getDescripcion_respuestas();
                 String key = post.getKEY();
-
 
                 listaPreguntas.add(new Pregunta(pregunta, fecha, categoria, estado, respuesta, R.drawable.bart,key));
 
@@ -214,8 +215,99 @@ public class PreguntasFragment extends Fragment {
 
     }
 
-    private void guardarRespuesta(String respuesta) {
-        //Query valor = referencia.orderByChild(FirebaseReferences.TODAS_PREGUNTAS).equalTo("-KzbcT7x7heqOa47hSs");
+    private void guardarRespuestaTodasPreguntas(final String categoria, final String descripcion, final String fechaRegistro, final String respuesta) {
+        ChildEventListener categoria1 = referencia.child(FirebaseReferences.TODAS_PREGUNTAS).orderByChild("categoria").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Pregunta pregunta = dataSnapshot.getValue(Pregunta.class);
+
+                String _categotia = categoria;
+                String _descripion = descripcion;
+                String _fecha = fechaRegistro;
+                String _respuesta = respuesta;
+
+                 if (pregunta.getCategoria().equals(_categotia) && pregunta.getDescripcion_pregunta().equals(_descripion) && pregunta.getFecha().equals(_fecha)) {
+
+                     pregunta.setDescripcion_respuestas(_respuesta);
+                     pregunta.setRespuestas(true);
+
+                     referencia.child(FirebaseReferences.TODAS_PREGUNTAS).child(dataSnapshot.getKey()).setValue(pregunta);
+                     //llenarListaPersonajes();
+
+                     recyclerPreguntas.getAdapter().notifyDataSetChanged();
+                     recyclerPreguntas.scrollToPosition(recyclerPreguntas.getAdapter().getItemCount() - 1);
+                 }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void guardarRespuestaUsuario(final String categoria, final String descripcion, final String fechaRegistro, final String respuesta) {
+        String usuario = user.getEmail();
+        usuario = usuario.replace(".", "");
+
+        final String finalUsuario = usuario;
+
+        ChildEventListener categoria1 = referencia.child(FirebaseReferences.PREGUNTA).child(usuario).orderByChild("categoria").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Pregunta pregunta = dataSnapshot.getValue(Pregunta.class);
+
+                String _categotia = categoria;
+                String _descripion = descripcion;
+                String _fecha = fechaRegistro;
+                String _respuesta = respuesta;
+
+                if (pregunta.getCategoria().equals(_categotia) && pregunta.getDescripcion_pregunta().equals(_descripion) && pregunta.getFecha().equals(_fecha)) {
+
+                    pregunta.setDescripcion_respuestas(_respuesta);
+                    pregunta.setRespuestas(true);
+
+                    referencia.child(FirebaseReferences.PREGUNTA).child(finalUsuario).child(dataSnapshot.getKey()).setValue(pregunta);
+
+
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void onButtonPressed(Uri uri) {

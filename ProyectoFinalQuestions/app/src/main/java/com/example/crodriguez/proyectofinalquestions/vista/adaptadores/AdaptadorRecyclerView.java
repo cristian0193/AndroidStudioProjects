@@ -44,7 +44,6 @@ public class AdaptadorRecyclerView
           
             holder.txtInformacion.setText(listaPregunta.get(position).getDescripcion_pregunta());
             holder.txtFecha.setText(listaPregunta.get(position).getFecha());
-            holder.txtRespuesta.setText(listaPregunta.get(position).getDescripcion_respuestas());
             holder.txtKey.setText(listaPregunta.get(position).getKEY());
            
             if(listaPregunta.get(position).isRespuestas()){
@@ -75,7 +74,7 @@ public class AdaptadorRecyclerView
     }
 
     public class PreguntaViewHolder extends RecyclerView.ViewHolder {
-        TextView txtCategoria,txtInformacion,txtFecha,txtEstado,txtRespuesta,txtKey;
+        TextView txtCategoria,txtInformacion,txtFecha,txtEstado,txtKey;
         ImageView foto;
 
         public PreguntaViewHolder(View itemView) {
@@ -88,7 +87,6 @@ public class AdaptadorRecyclerView
                 txtEstado = (TextView) itemView.findViewById(R.id.idEstado);
             }
 
-            txtRespuesta = (TextView) itemView.findViewById(R.id.idRespuesta);
             txtKey = (TextView) itemView.findViewById(R.id.idKey);
             foto = (ImageView) itemView.findViewById(R.id.idImagen);
 

@@ -2,6 +2,7 @@ package com.example.crodriguez.proyectofinalquestions.dominio;
 
 import android.support.annotation.NonNull;
 
+import com.example.crodriguez.proyectofinalquestions.modelo.FirebaseReferences;
 import com.example.crodriguez.proyectofinalquestions.modelo.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,7 +23,7 @@ public class LUsuario implements ILUsuario{
     public LUsuario(){
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        refUsuarios = firebaseDatabase.getReference("base_datos_questions");
+        refUsuarios = firebaseDatabase.getReference(FirebaseReferences.USUARIO);
     }
 
     @Override
@@ -34,8 +35,8 @@ public class LUsuario implements ILUsuario{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             usuario.setUid(task.getResult().getUser().getUid());
-                            refUsuarios.child(usuario.getUid())
-                                    .setValue(usuario);
+
+                            refUsuarios.child(usuario.getUid()).setValue(usuario);
                             callBackInteractor.success(usuario.getNombre());
                         } else {
                             callBackInteractor.error(task.getException().getMessage());

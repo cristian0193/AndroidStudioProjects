@@ -66,8 +66,7 @@ public class MisPreguntasFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mis_preguntas, container, false);
 
         listaMisPreguntas=new ArrayList<>();
@@ -109,7 +108,6 @@ public class MisPreguntasFragment extends Fragment {
         });
 
         return view;
-
     }
 
             private void llenarListaPersonajes() {
@@ -118,7 +116,6 @@ public class MisPreguntasFragment extends Fragment {
 
                 FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
                 referencia = mDatabase.getReference(FirebaseReferences.BASE_DATOS);
-
 
                 String usuario = user.getEmail();
                 usuario = usuario.replace(".", "");
@@ -137,9 +134,7 @@ public class MisPreguntasFragment extends Fragment {
 
                         listaMisPreguntas.add(new Pregunta(pregunta, fecha,categoria, estado, respuesta ,R.drawable.burns,key));
 
-                        recyclerMisPreguntas.getAdapter().notifyDataSetChanged();
-                        recyclerMisPreguntas.scrollToPosition(recyclerMisPreguntas.getAdapter().getItemCount()-1);
-                    }
+                          }
 
                     @Override
                     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
