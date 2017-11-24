@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "307952626457",
+    "firebase_url": "https://appmensajeria-bdcaa.firebaseio.com",
+    "project_id": "appmensajeria-bdcaa",
+    "storage_bucket": "appmensajeria-bdcaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307952626457:android:15e8fe40dbf28d58",
+        "android_client_info": {
+          "package_name": "cv.yeison.appmensajeria"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307952626457-7660odt6hlm2acnfjqjlm2gitnmq8bb4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz5HCO0qEgQqcOCiB9RWUTr0p6uYSjy6k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

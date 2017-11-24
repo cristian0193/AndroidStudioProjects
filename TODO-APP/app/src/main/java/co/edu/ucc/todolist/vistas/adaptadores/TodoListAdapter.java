@@ -24,8 +24,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.ItemTo
     private List<Tarea> dataset;
     private OnListenerItemCheck onListenerItemCheck;
 
-    public TodoListAdapter(List<Tarea> dataset,
-                           OnListenerItemCheck onListenerItemCheck) {
+    public TodoListAdapter(List<Tarea> dataset,OnListenerItemCheck onListenerItemCheck) {
         super();
         this.dataset = dataset;
         this.onListenerItemCheck = onListenerItemCheck;

@@ -31,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+
 public class PreguntasFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -83,19 +85,18 @@ public class PreguntasFragment extends Fragment {
 
         llenarListaPersonajes();
 
-        AdaptadorRecyclerView adapter = new AdaptadorRecyclerView(listaPreguntas);
+        final AdaptadorRecyclerView adapter = new AdaptadorRecyclerView(listaPreguntas);
         recyclerPreguntas.setAdapter(adapter);
 
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
                 String stCategoria = "";
                 String stPregunta = "";
                 String stRespuestaDetalle = "";
                 String stFecha = "";
                 Boolean stRespuesta;
-
 
                 stCategoria = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getCategoria();
                 stPregunta = listaPreguntas.get(recyclerPreguntas.getChildAdapterPosition(view)).getDescripcion_pregunta();
@@ -152,8 +153,10 @@ public class PreguntasFragment extends Fragment {
                             respuestaIngresada = etRespuesta.getText().toString();
 
                             if (!respuestaIngresada.equals("")) {
+
                                 guardarRespuestaTodasPreguntas(finalStCategoria, finalStPregunta, finalStFecha,respuestaIngresada);
                                 guardarRespuestaUsuario(finalStCategoria, finalStPregunta, finalStFecha,respuestaIngresada);
+
                                 Snackbar.make(getView(), R.string.PreguntaRegistrada, Snackbar.LENGTH_LONG).show();
                             } else {
                                 Snackbar.make(getView(), R.string.CamposVaciosTarea, Snackbar.LENGTH_LONG).show();
@@ -190,6 +193,7 @@ public class PreguntasFragment extends Fragment {
 
                 recyclerPreguntas.getAdapter().notifyDataSetChanged();
                 recyclerPreguntas.scrollToPosition(recyclerPreguntas.getAdapter().getItemCount() - 1);
+
             }
 
             @Override
@@ -232,10 +236,7 @@ public class PreguntasFragment extends Fragment {
                      pregunta.setRespuestas(true);
 
                      referencia.child(FirebaseReferences.TODAS_PREGUNTAS).child(dataSnapshot.getKey()).setValue(pregunta);
-                     //llenarListaPersonajes();
-
-                     recyclerPreguntas.getAdapter().notifyDataSetChanged();
-                     recyclerPreguntas.scrollToPosition(recyclerPreguntas.getAdapter().getItemCount() - 1);
+                     llenarListaPersonajes();
                  }
             }
 
@@ -262,6 +263,7 @@ public class PreguntasFragment extends Fragment {
     }
 
     private void guardarRespuestaUsuario(final String categoria, final String descripcion, final String fechaRegistro, final String respuesta) {
+
         String usuario = user.getEmail();
         usuario = usuario.replace(".", "");
 
@@ -283,8 +285,7 @@ public class PreguntasFragment extends Fragment {
                     pregunta.setRespuestas(true);
 
                     referencia.child(FirebaseReferences.PREGUNTA).child(finalUsuario).child(dataSnapshot.getKey()).setValue(pregunta);
-
-
+                    llenarListaPersonajes();
                 }
             }
 
@@ -308,6 +309,8 @@ public class PreguntasFragment extends Fragment {
 
             }
         });
+
+
     }
 
     public void onButtonPressed(Uri uri) {

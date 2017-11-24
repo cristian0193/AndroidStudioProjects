@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name"></string>
+    <string name="title_activity_mensajes">MensajesActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">E-Mail</string>
+    <string name="contrasena">Password</string>
+    <string name="pass">Password</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="recordar_contrasena">Recuperar Contraseña</string>
+    <string name="registro">Registrarse</string>
+    <string name="nombres">Nombres</string>
+    <string name="crear_cuenta">Crear Cuenta</string>
+    <string name="tienes_cuenta">¿Ya tienes una cuenta?</string>
+    <string name="edad">Edad</string>
+    <string name="telefono">Celular</string>
+    <string name="IngresarCorreo">Correo de recuperación</string>
+    <string name="Enviar">Enviar</string>
+    <string name="title_activity_perfil">PerfilActivity</string>
+    <string name="pregunta">Hola</string>
+    <string name="salir">Logout</string>
+    <string name="ENVIADO">Hola estoy en enviados</string>
+    <string name="RECIBIDO">Hola estoy en Recibidos</string>
+    <string name="perfil">Hola estoy en Perfil</string>
+    <string name="menu_notifications">Notifica</string>
+    <string name="menu_search">buscar</string>
+    <string name="menu_home">Home</string>
+</resources>

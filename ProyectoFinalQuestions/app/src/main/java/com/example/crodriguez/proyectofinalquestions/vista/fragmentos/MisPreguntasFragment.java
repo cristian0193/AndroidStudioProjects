@@ -134,7 +134,10 @@ public class MisPreguntasFragment extends Fragment {
 
                         listaMisPreguntas.add(new Pregunta(pregunta, fecha,categoria, estado, respuesta ,R.drawable.burns,key));
 
-                          }
+                        recyclerMisPreguntas.getAdapter().notifyDataSetChanged();
+                        recyclerMisPreguntas.scrollToPosition(recyclerMisPreguntas.getAdapter().getItemCount() - 1);
+
+                         }
 
                     @Override
                     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
@@ -157,7 +160,6 @@ public class MisPreguntasFragment extends Fragment {
 
                     }
                 });
-
 
             }
 
