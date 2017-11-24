@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -53,7 +54,6 @@ public class MenuActivity extends AppCompatActivity
     IPreguntaPresenter preguntaPresenter;
     MisPreguntasFragment listaFragmentmispreguntas;
 
-
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
@@ -92,7 +92,7 @@ public class MenuActivity extends AppCompatActivity
             Utilidades.PORTRAIT=false;
         }
 
-   }
+         }
 
     @OnClick(R.id.fab)
     public void AgregarPregunta(){

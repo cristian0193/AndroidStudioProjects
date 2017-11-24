@@ -3,7 +3,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.crodriguez.proyectofinalquestions.vista.fragmentos.RecuperarFragment"
-        android:padding="15dp">
+    android:padding="5dp">
 
         <ProgressBar
             android:id="@+id/progress"
@@ -47,9 +47,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:hint="@string/IngresarCorreo" />
+                    android:drawableLeft="@drawable/ic_email_claro"
+                    android:hint="@string/email" />
 
             </LinearLayout>
 
@@ -57,9 +56,8 @@
                 android:id="@+id/btnRecuperar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/BtnAuthStyle"
+                style="@style/BtnRegistro"
                 android:text="@string/Enviar"/>
-
 
         </LinearLayout>
 

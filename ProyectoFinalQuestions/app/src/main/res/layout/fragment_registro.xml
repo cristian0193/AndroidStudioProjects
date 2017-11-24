@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="5dp"
     tools:context="com.example.crodriguez.proyectofinalquestions.vista.fragmentos.RegistroFragment">
 
     <ProgressBar
@@ -44,6 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nombres"
+                    android:drawableLeft="@drawable/ic_icon_user"
                     android:inputType="text" />
 
             </android.support.design.widget.TextInputLayout>
@@ -57,6 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email"
+                    android:drawableLeft="@drawable/ic_email_claro"
                     android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -77,7 +80,7 @@
 
             <Button
                 android:id="@+id/btnCrearCuenta"
-                style="@style/BtnAuthStyle"
+                style="@style/BtnLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

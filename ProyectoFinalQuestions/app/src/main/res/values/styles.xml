@@ -8,12 +8,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="BtnAuthStyle">
-        <item name="android:textSize">18sp</item>
+
+
+
+    <style name="BtnLogin">
+        <item name="android:paddingEnd">50dp</item>
+        <item name="android:paddingStart">50dp</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:background">@color/Azul_claro3</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17sp</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="BtnRegistro">
+        <item name="android:background">@color/Azul_claro</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

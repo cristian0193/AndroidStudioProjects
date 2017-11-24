@@ -44,6 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email"
+                    android:drawableLeft="@drawable/ic_email_claro"
                     android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -63,13 +64,16 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                style="@style/BtnAuthStyle"
+                style="@style/BtnLogin"
                 android:id="@+id/btnIngresarLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:paddingEnd="50dp"
                 android:paddingStart="50dp"
+                android:textColor="@color/blanco"
+                android:background="@color/Azul_claro3"
+                android:layout_marginTop="10dp"
                 android:text="@string/ingresar" />
 
             <TextView
@@ -79,7 +83,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:clickable="true"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/Azul_claro2"
                 android:textStyle="bold"
                 android:textSize="15dp"
                 android:text="@string/recordar_contrasena" />
@@ -90,10 +94,11 @@
 
     <Button
         android:id="@+id/btnCrearCuenta"
-        style="@style/BtnAuthStyle"
+        style="@style/BtnRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
+        android:drawableLeft="@drawable/ic_add_registro"
         android:text="@string/registro" />
 
 </FrameLayout>

@@ -132,7 +132,7 @@ public class MisPreguntasFragment extends Fragment {
                         String respuesta = post.getDescripcion_respuestas();
                         String key = post.getKEY();
 
-                        listaMisPreguntas.add(new Pregunta(pregunta, fecha,categoria, estado, respuesta ,R.drawable.burns,key));
+                        listaMisPreguntas.add(new Pregunta(pregunta, fecha,categoria, estado, respuesta ,R.drawable.bart2,key));
 
                         recyclerMisPreguntas.getAdapter().notifyDataSetChanged();
                         recyclerMisPreguntas.scrollToPosition(recyclerMisPreguntas.getAdapter().getItemCount() - 1);

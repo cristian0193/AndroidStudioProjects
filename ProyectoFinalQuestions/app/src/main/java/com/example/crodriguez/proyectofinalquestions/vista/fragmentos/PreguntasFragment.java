@@ -189,7 +189,7 @@ public class PreguntasFragment extends Fragment {
                 String respuesta = post.getDescripcion_respuestas();
                 String key = post.getKEY();
 
-                listaPreguntas.add(new Pregunta(pregunta, fecha, categoria, estado, respuesta, R.drawable.bart,key));
+                listaPreguntas.add(new Pregunta(pregunta, fecha, categoria, estado, respuesta, R.drawable.bart_casino,key));
 
                 recyclerPreguntas.getAdapter().notifyDataSetChanged();
                 recyclerPreguntas.scrollToPosition(recyclerPreguntas.getAdapter().getItemCount() - 1);

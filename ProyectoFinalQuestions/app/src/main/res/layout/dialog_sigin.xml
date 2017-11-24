@@ -30,6 +30,8 @@
             android:hint="@string/categoria"
             android:inputType="text" />
 
+
+
     </LinearLayout>
 
 
