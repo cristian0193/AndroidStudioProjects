@@ -5,7 +5,6 @@
     <item
         android:id="@+id/accion_salir"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_library_add_black_24dp"
         android:title="@string/salir"
         app:showAsAction="never" />
 </menu>

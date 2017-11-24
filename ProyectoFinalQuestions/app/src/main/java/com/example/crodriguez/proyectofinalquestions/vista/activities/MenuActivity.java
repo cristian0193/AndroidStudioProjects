@@ -46,10 +46,12 @@ import butterknife.OnClick;
 
 public class MenuActivity extends AppCompatActivity
         implements PreguntasFragment.OnFragmentInteractionListener,
-                    MisPreguntasFragment.OnFragmentInteractionListener {
+                    MisPreguntasFragment.OnFragmentInteractionListener,NavigationView.OnNavigationItemSelectedListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private TabLayout tabLayout;
+    private DrawerLayout drawer;
     PreguntasFragment listaFragment;
     IPreguntaPresenter preguntaPresenter;
     MisPreguntasFragment listaFragmentmispreguntas;
@@ -71,7 +73,7 @@ public class MenuActivity extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
         preguntaPresenter = new PreguntaPresenter();
@@ -91,6 +93,15 @@ public class MenuActivity extends AppCompatActivity
         }else{
             Utilidades.PORTRAIT=false;
         }
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
          }
 
@@ -173,6 +184,32 @@ public class MenuActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_pregunta) {
+            tabLayout.getTabAt(0).select();
+            tabLayout.setupWithViewPager(mViewPager);
+            drawer.closeDrawers();
+        } else if (id == R.id.nav_mis_pregunta) {
+            tabLayout.getTabAt(1).select();
+            tabLayout.setupWithViewPager(mViewPager);
+            drawer.closeDrawers();
+        } else if (id == R.id.nav_compartir) {
+
+        } else if (id == R.id.nav_salir) {
+            Intent intent = new Intent(this, PrincipalActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     public static class PlaceholderFragment extends Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
@@ -203,7 +240,6 @@ public class MenuActivity extends AppCompatActivity
             return rootView;
         }
     }
-
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
