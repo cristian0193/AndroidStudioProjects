@@ -44,6 +44,7 @@ public class PreguntasFragment extends Fragment {
     private FirebaseAuth auth;
     private FirebaseUser user;
     DatabaseReference referencia;
+    String mensaje = "";
 
     private OnFragmentInteractionListener mListener;
 
@@ -117,6 +118,11 @@ public class PreguntasFragment extends Fragment {
                     txtFecha.setText(stFecha);
                     txtRespuesta.setText(stRespuestaDetalle);
 
+                    mensaje = "Categoria : " + stCategoria + "\n" +
+                            "Pregunta : " + stPregunta + "\n" +
+                            "Respuesta : " + stRespuestaDetalle + "\n" +
+                            "Fecha : " + stFecha + "" ;
+
                     mBuilder.setView(mView);
 
                     mBuilder.setPositiveButton(R.string.compartir, new DialogInterface.OnClickListener() {
@@ -124,7 +130,7 @@ public class PreguntasFragment extends Fragment {
 
                             Intent intent = new Intent(Intent.ACTION_SEND);
                             intent.setType("text/plain");
-                            intent.putExtra(Intent.EXTRA_TEXT, "El mejor blog de android http://javaheros.blogspot.pe/");
+                            intent.putExtra(Intent.EXTRA_TEXT, mensaje);
                             startActivity(Intent.createChooser(intent, "Compatir con"));
 
                         }
@@ -182,6 +188,7 @@ public class PreguntasFragment extends Fragment {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 Pregunta post = dataSnapshot.getValue(Pregunta.class);
+
                 String categoria = post.getCategoria();
                 String pregunta = post.getDescripcion_pregunta();
                 String fecha = post.getFecha();

@@ -7,7 +7,7 @@
     android:weightSum="1">
 
     <EditText
-        android:id="@+id/etTarea"
+        android:id="@+id/etPregunta"
         android:layout_width="match_parent"
         android:layout_height="101dp"
         android:layout_marginTop="7dp"

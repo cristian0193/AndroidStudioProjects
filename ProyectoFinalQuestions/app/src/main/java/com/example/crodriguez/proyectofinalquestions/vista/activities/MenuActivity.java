@@ -117,7 +117,7 @@ public class MenuActivity extends AppCompatActivity
                 mBuilder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
                 mBuilder.setView(mView);
 
-                final EditText etTarea = (EditText) mView.findViewById(R.id.etTarea);
+                final EditText etPregunta = (EditText) mView.findViewById(R.id.etPregunta);
                 final EditText etCategoria = (EditText) mView.findViewById(R.id.etCategoria);
 
                 mBuilder.setPositiveButton(R.string.Agregar, new DialogInterface.OnClickListener() {
@@ -126,7 +126,7 @@ public class MenuActivity extends AppCompatActivity
                         String preguntaIngresada = "";
                         String categoriaIngresada = "";
 
-                        preguntaIngresada = etTarea.getText().toString();
+                        preguntaIngresada = etPregunta.getText().toString();
                         categoriaIngresada = etCategoria.getText().toString();
 
                         if (!preguntaIngresada.equals("") && !categoriaIngresada.equals("")) {
@@ -193,10 +193,12 @@ public class MenuActivity extends AppCompatActivity
             tabLayout.getTabAt(0).select();
             tabLayout.setupWithViewPager(mViewPager);
             drawer.closeDrawers();
+
         } else if (id == R.id.nav_mis_pregunta) {
             tabLayout.getTabAt(1).select();
             tabLayout.setupWithViewPager(mViewPager);
             drawer.closeDrawers();
+
         } else if (id == R.id.nav_compartir) {
 
         } else if (id == R.id.nav_salir) {
